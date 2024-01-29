@@ -1,10 +1,8 @@
 import Link from 'next/link';
-import Image from 'next/image';
-import logo from '../../public/logo.svg';
 
 export const Header = () => {
   return (
-    <div className='p-5'>
+    <div>
       <Link href='/'>
         <h1 className='text-2xl'>
           Casualty

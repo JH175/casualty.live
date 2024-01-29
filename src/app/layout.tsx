@@ -17,10 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={maven.className}>
-        <Header />
-        {children}
-      </body>
+      <body className={maven.className}>{children}</body>
     </html>
   );
 }

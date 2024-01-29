@@ -1,0 +1,53 @@
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Case {
+  id            String    @id @default(uuid())
+  Entries       Entry[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime?
+  isShared      Boolean?  @default(false)
+  sharePass     String?
+  editPass      String?
+  entryDateTime DateTime?
+  expiresOn     DateTime?
+  ptGender      String
+  ptAge         String
+  ptAgeUnit     String
+  note          String
+}
+
+model Entry {
+  id            String    @id @default(uuid())
+  Case          Case?     @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  caseId        String?
+  entryDateTime DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime?
+  gcsTotal      Int?
+  gcsE          Int?
+  gcsV          Int?
+  gcsM          Int?
+  RR            Int?
+  SPO2          Int?
+  ETCO2         Int?
+  PR            Int?
+  SBP           Int?
+  DBP           Int?
+  MAP           Int?
+  ECG4          String?
+  ECG12         String?
+  TempC         Int?
+  TempF         Int?
+  BGL           Int?
+  Note          String?
+
+  @@index([caseId])
+}
