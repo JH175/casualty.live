@@ -17,7 +17,7 @@ export default function Home() {
       </Link>
       <Link href='/case'>
         <span className='rounded-md border border-teal-300 p-2 hover:bg-teal-300 hover:text-black'>
-          Launch New Case
+          Launch
         </span>
       </Link>
     </div>

@@ -3,10 +3,10 @@
 const CaseForm = () => {
   const handleCreateCase = () => {};
   return (
-    <div className='border border-teal-300 p-5 text-teal-300'>
+    <div className='rounded-md border border-teal-300 p-5 text-teal-300'>
       <form className='flex flex-col gap-2'>
         <label htmlFor='gender'>Gender:</label>
-        <select className='border border-teal-300 bg-zinc-900 p-1'>
+        <select className='rounded-md border border-teal-300 bg-zinc-900 p-1'>
           <option value='null' disabled selected>
             --
           </option>
@@ -14,8 +14,11 @@ const CaseForm = () => {
           <option value='female'>Female</option>
         </select>
         <label htmlFor='age'>Age:</label>
-        <input type='text' className='border border-teal-300 bg-zinc-900 p-1' />
-        <select className='border border-teal-300 bg-zinc-900 p-1'>
+        <input
+          type='text'
+          className='rounded-md border border-teal-300 bg-zinc-900 p-1'
+        />
+        <select className='rounded-md border border-teal-300 bg-zinc-900 p-1'>
           <option value='null' disabled selected>
             --
           </option>
@@ -26,9 +29,9 @@ const CaseForm = () => {
         </select>
 
         <label htmlFor='note'>Note:</label>
-        <textarea className='border border-teal-300 bg-zinc-900 p-1' />
+        <textarea className='rounded-md border border-teal-300 bg-zinc-900 p-1' />
         <label htmlFor='expires'>Delete Case After:</label>
-        <select className='border border-teal-300 bg-zinc-900 p-1'>
+        <select className='rounded-md border border-teal-300 bg-zinc-900 p-1'>
           <option value='null' disabled selected>
             --
           </option>
@@ -39,8 +42,8 @@ const CaseForm = () => {
           <option value='1month'>1 Month</option>
           <option value='1year'>1 Year</option>
         </select>
-        <button className='border border-teal-300 bg-zinc-900 p-1 hover:bg-teal-300 hover:text-black'>
-          Launch Case
+        <button className='rounded-md border border-teal-300 bg-zinc-900 p-1 text-white hover:bg-teal-300 hover:text-black'>
+          Create Case
         </button>
       </form>
     </div>
