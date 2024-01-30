@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/db';
-import { redirect } from 'next/navigation';
 
 export async function POST(req: NextRequest) {
   try {
-    const { ptGender, ptAge, ptAgeUnit, note } = await req.json();
+    const { ptGender, ptAge, ptAgeUnit, note, complaint } = await req.json();
     if (!ptGender || !ptAge || !ptAgeUnit) {
       return new NextResponse(
         JSON.stringify({ error: 'Missing required fields' }),
@@ -20,6 +19,7 @@ export async function POST(req: NextRequest) {
         ptAge,
         ptAgeUnit,
         note,
+        complaint,
       },
     });
 

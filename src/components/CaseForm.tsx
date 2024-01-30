@@ -1,6 +1,6 @@
 'use client';
 
-import Loading from '@/app/loading';
+import { error } from 'console';
 import { useRouter } from 'next/navigation';
 import { FieldValues, useForm } from 'react-hook-form';
 
@@ -10,11 +10,13 @@ const CaseForm = () => {
     register,
     handleSubmit,
     reset,
-    getValues,
-    formState: { errors, isSubmitting, isSubmitted },
+    formState: { errors, isSubmitting },
   } = useForm();
   const handleCreateCase = async (data: FieldValues) => {
     try {
+      if (!data.ptGender || !data.ptAge) {
+        throw new Error('Missing required fields.');
+      }
       await fetch('/api/case/create', {
         method: 'POST',
         headers: {
@@ -25,6 +27,7 @@ const CaseForm = () => {
           ptAge: data.ptAge,
           ptAgeUnit: data.ptAgeUnit,
           note: data.note,
+          complaint: data.complaint,
         }),
       })
         .then((response) => {
@@ -33,6 +36,7 @@ const CaseForm = () => {
         .then((json) => {
           let newCase = json;
           router.replace(`/case/${newCase.id}`);
+          reset();
         });
     } catch (error) {
       console.error(error);
@@ -40,57 +44,65 @@ const CaseForm = () => {
   };
   return (
     <div>
-      {isSubmitting || isSubmitted ? (
-        <Loading />
-      ) : (
-        <div className='rounded-md border border-zinc-700 p-5 text-teal-300 '>
-          <form
-            onSubmit={handleSubmit(handleCreateCase)}
-            className='flex flex-col gap-2'
+      <div className='rounded-md bg-gradient-to-b from-zinc-900 to-zinc-800 p-5 shadow-md shadow-teal-300'>
+        <form
+          onSubmit={handleSubmit(handleCreateCase)}
+          className='flex flex-col gap-2'
+        >
+          <label htmlFor='ptGender'>Gender:</label>
+          <select
+            {...register('ptGender', {
+              required: "Patient's gender is required.",
+            })}
+            className='rounded-md border border-zinc-700 bg-zinc-900 p-1'
           >
-            <label htmlFor='ptGender'>Gender:</label>
-            <select
-              {...register('ptGender')}
-              className='rounded-md border border-teal-300 bg-zinc-900 p-1'
-            >
-              <option value='null' disabled>
-                --
-              </option>
-              <option value='male'>Male</option>
-              <option value='female'>Female</option>
-            </select>
-            <label htmlFor='ptAge'>Age:</label>
-            <input
-              {...register('ptAge')}
-              type='number'
-              className='rounded-md border border-teal-300 bg-zinc-900 p-1'
-            />
-            <select
-              {...register('ptAgeUnit')}
-              className='rounded-md border border-teal-300 bg-zinc-900 p-1'
-            >
-              <option value='null' disabled>
-                --
-              </option>
-              <option value='years'>Years</option>
-              <option value='months'>Months</option>
-            </select>
+            <option value=''>--</option>
+            <option value='Male'>Male</option>
+            <option value='Female'>Female</option>
+          </select>
+          {errors.ptGender && (
+            <p className='text-red-300'>{`${errors.ptGender.message}`}</p>
+          )}
+          <label htmlFor='ptAge'>Age:</label>
+          <input
+            {...register('ptAge', {
+              required: "Patient's age is required.",
+            })}
+            type='number'
+            className='rounded-md border border-zinc-700 bg-zinc-900 p-1'
+          />
+          {errors.ptAge && (
+            <p className='text-red-300'>{`${errors.ptAge.message}`}</p>
+          )}
+          <select
+            {...register('ptAgeUnit')}
+            defaultValue={'Y/O'}
+            className='rounded-md border border-zinc-700 bg-zinc-900 p-1'
+          >
+            <option value='Y/O'>Years</option>
+            <option value='MO'>Months</option>
+          </select>
+          <label htmlFor='complaint'>Complaint:</label>
+          <input
+            {...register('complaint')}
+            type='string'
+            className='rounded-md border border-zinc-700 bg-zinc-900 p-1'
+          />
+          <label htmlFor='note'>Note:</label>
+          <textarea
+            {...register('note')}
+            className='rounded-md border border-zinc-700 bg-zinc-900 p-1'
+          />
 
-            <label htmlFor='note'>Note:</label>
-            <textarea
-              {...register('note')}
-              className='rounded-md border border-teal-300 bg-zinc-900 p-1'
-            />
-
-            <button
-              type='submit'
-              className='rounded-md border border-teal-300 bg-zinc-900 p-1 text-white hover:bg-teal-300 hover:text-black'
-            >
-              Create Case
-            </button>
-          </form>
-        </div>
-      )}
+          <button
+            disabled={isSubmitting}
+            type='submit'
+            className='rounded-md border border-zinc-700 bg-zinc-900 p-1 text-white hover:bg-teal-300 hover:text-black disabled:bg-zinc-900'
+          >
+            Create Case
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

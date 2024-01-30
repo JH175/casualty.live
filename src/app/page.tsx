@@ -12,7 +12,7 @@ export default function Home() {
             Casualty
             <span className='text-teal-300'>.</span>Live
           </h1>
-          <p>Send & Trend Vitals</p>
+          <p>Lightweight & Informed Telemedicine</p>
         </div>
       </Link>
       <Link href='/case'>

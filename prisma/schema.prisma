@@ -21,6 +21,7 @@ model Case {
   ptGender      String
   ptAge         String
   ptAgeUnit     String
+  complaint     String
   note          String
 }
 
