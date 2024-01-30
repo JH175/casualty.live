@@ -1,48 +1,76 @@
 'use client';
+import { FieldValues, useForm } from 'react-hook-form';
 
 const CaseForm = () => {
-  const handleCreateCase = () => {};
+  const {
+    register,
+    handleSubmit,
+    reset,
+    getValues,
+    formState: { errors, isSubmitting },
+  } = useForm();
+  const handleCreateCase = async (data: FieldValues) => {
+    try {
+      await fetch('/api/case/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ptGender: data.ptGender,
+          ptAge: data.ptAge,
+          ptAgeUnit: data.ptAgeUnit,
+          note: data.note,
+        }),
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <div className='rounded-md border border-teal-300 p-5 text-teal-300'>
-      <form className='flex flex-col gap-2'>
-        <label htmlFor='gender'>Gender:</label>
-        <select className='rounded-md border border-teal-300 bg-zinc-900 p-1'>
-          <option value='null' disabled selected>
+      <form
+        onSubmit={handleSubmit(handleCreateCase)}
+        className='flex flex-col gap-2'
+      >
+        <label htmlFor='ptGender'>Gender:</label>
+        <select
+          {...register('ptGender')}
+          className='rounded-md border border-teal-300 bg-zinc-900 p-1'
+        >
+          <option value='null' disabled>
             --
           </option>
           <option value='male'>Male</option>
           <option value='female'>Female</option>
         </select>
-        <label htmlFor='age'>Age:</label>
+        <label htmlFor='ptAge'>Age:</label>
         <input
-          type='text'
+          {...register('ptAge')}
+          type='number'
           className='rounded-md border border-teal-300 bg-zinc-900 p-1'
         />
-        <select className='rounded-md border border-teal-300 bg-zinc-900 p-1'>
-          <option value='null' disabled selected>
+        <select
+          {...register('ptAgeUnit')}
+          className='rounded-md border border-teal-300 bg-zinc-900 p-1'
+        >
+          <option value='null' disabled>
             --
           </option>
-          <option value='years' selected>
-            Years
-          </option>
+          <option value='years'>Years</option>
           <option value='months'>Months</option>
         </select>
 
         <label htmlFor='note'>Note:</label>
-        <textarea className='rounded-md border border-teal-300 bg-zinc-900 p-1' />
-        <label htmlFor='expires'>Delete Case After:</label>
-        <select className='rounded-md border border-teal-300 bg-zinc-900 p-1'>
-          <option value='null' disabled selected>
-            --
-          </option>
-          <option value='24'>1 Day</option>
-          <option value='48'>2 Days</option>
-          <option value='72'>3 Days</option>
-          <option value='1week'>1 Week</option>
-          <option value='1month'>1 Month</option>
-          <option value='1year'>1 Year</option>
-        </select>
-        <button className='rounded-md border border-teal-300 bg-zinc-900 p-1 text-white hover:bg-teal-300 hover:text-black'>
+        <textarea
+          {...register('note')}
+          className='rounded-md border border-teal-300 bg-zinc-900 p-1'
+        />
+
+        <button
+          type='submit'
+          className='rounded-md border border-teal-300 bg-zinc-900 p-1 text-white hover:bg-teal-300 hover:text-black'
+        >
           Create Case
         </button>
       </form>

@@ -44,8 +44,8 @@ model Entry {
   MAP           Int?
   ECG4          String?
   ECG12         String?
-  TempC         Int?
-  TempF         Int?
+  TempC         Float?
+  TempF         Float?
   BGL           Int?
   Note          String?
 
