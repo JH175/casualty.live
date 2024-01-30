@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/db';
+import { redirect } from 'next/navigation';
 
 export async function POST(req: NextRequest) {
   try {
@@ -21,6 +22,7 @@ export async function POST(req: NextRequest) {
         note,
       },
     });
+
     return new NextResponse(JSON.stringify(clCase), {
       status: 201,
       headers: { 'Content-Type': 'application/json' },

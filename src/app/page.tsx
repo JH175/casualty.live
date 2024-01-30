@@ -4,7 +4,7 @@ import logo from '../../public/logo.png';
 
 export default function Home() {
   return (
-    <div className='flex h-screen flex-col items-center justify-center gap-10'>
+    <div className='flex h-screen flex-col items-center justify-center gap-5'>
       <Link href='/'>
         <div className='flex flex-col items-center justify-center'>
           <Image src={logo} alt='' width={200} />
