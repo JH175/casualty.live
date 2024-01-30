@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
         }
       );
     }
-    const clCase = await prisma.case.create({
+    const clCase = await prisma.clCase.create({
       data: {
         ptGender,
         ptAge,

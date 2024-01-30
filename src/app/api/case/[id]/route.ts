@@ -1,39 +1,130 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/db';
 
-export async function POST(req: NextRequest) {
+export async function GET({ params }: { params: { id: string } }) {
   try {
-    const { expiresOn, ptGender, ptAge, ptAgeUnit, note } = await req.json();
-    if (!expiresOn || !ptGender || !ptAge || !ptAgeUnit) {
-      return new NextResponse(
-        JSON.stringify({ error: 'Missing required fields' }),
-        {
-          status: 400,
-          headers: { 'Content-Type': 'application/json' },
-        }
-      );
+    const clCaseId = params.id;
+    const clCase = await prisma.clCase.findUnique({
+      where: { id: clCaseId },
+    });
+    if (!clCase) {
+      return new NextResponse(JSON.stringify({ error: 'Case not found' }), {
+        status: 404,
+        headers: { 'Content-Type': 'application/json' },
+      });
     }
-    const notification = await prisma.case.create({
+    return new NextResponse(JSON.stringify(clCase), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  } catch (error: unknown) {
+    let status = 500;
+    let errorMessage = 'Error fetching case';
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+    return new NextResponse(JSON.stringify({ error: errorMessage }), {
+      status,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+}
+
+export async function PUT(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const clCaseId = params.id;
+    const {
+      updatedAt,
+      isShared,
+      sharePass,
+      editPass,
+      expiresOn,
+      ptGender,
+      ptAge,
+      ptAgeUnit,
+      complaint,
+      note,
+    } = await req.json();
+
+    const existingCase = await prisma.clCase.findUnique({
+      where: { id: clCaseId },
+    });
+
+    if (!existingCase) {
+      return new NextResponse(JSON.stringify({ error: 'Case not found' }), {
+        status: 404,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    const updatedCase = await prisma.clCase.update({
+      where: { id: clCaseId },
       data: {
+        updatedAt,
+        isShared,
+        sharePass,
+        editPass,
         expiresOn,
         ptGender,
         ptAge,
         ptAgeUnit,
+        complaint,
         note,
       },
     });
-    return new NextResponse(JSON.stringify(notification), {
-      status: 201,
+    return new NextResponse(JSON.stringify(updatedCase), {
+      status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
   } catch (error: unknown) {
-    console.error(error);
+    let status = 500;
+    let errorMessage = 'Error updating case';
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+    return new NextResponse(JSON.stringify({ error: errorMessage }), {
+      status,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+}
+
+export async function DELETE({ params }: { params: { id: string } }) {
+  try {
+    const clCaseId = params.id;
+    const existingCase = await prisma.clCase.findUnique({
+      where: { id: clCaseId },
+    });
+    if (!existingCase) {
+      return new NextResponse(JSON.stringify({ error: 'Case not found' }), {
+        status: 404,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    await prisma.clCase.delete({
+      where: { id: clCaseId },
+    });
+
     return new NextResponse(
-      JSON.stringify({ error: 'Error creating new case' }),
+      JSON.stringify({ message: 'Case deleted successfully' }),
       {
-        status: 500,
+        status: 200,
         headers: { 'Content-Type': 'application/json' },
       }
     );
+  } catch (error: unknown) {
+    let status = 500;
+    let errorMessage = 'Error deleting case';
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+    return new NextResponse(JSON.stringify({ error: errorMessage }), {
+      status,
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
 }

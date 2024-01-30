@@ -1,26 +1,29 @@
 'use client';
 
 import { useState } from 'react';
-import { FaBars, FaGear, FaShare } from 'react-icons/fa6';
+import { FaBars } from 'react-icons/fa6';
 
-const CaseNav = ({ caseData }: { caseData: any }) => {
+const ClCaseNav = ({ clCaseData }: { clCaseData: any }) => {
   const [expanded, setExpanded] = useState(false);
   const toggleExpanded = () => {
     setExpanded(!expanded);
   };
-  const caseDate = caseData.createdAt;
-  const caseDateIso = caseDate.toUTCString();
+  const clCaseDate = clCaseData.createdAt;
+  const clCaseDateIso = clCaseDate.toUTCString();
   return (
     <div className='flex w-full justify-between'>
       <div className='flex flex-col uppercase'>
-        <span>Case Id: {caseData.id}</span>
-        <span>{`Initiated: ${caseDateIso}`}</span>
+        <span>Case Id: {clCaseData.id}</span>
+        <span>{`Initiated: ${clCaseDateIso}`}</span>
         <div className='text-sm text-teal-300'>
           <div>
-            Patient: {caseData.ptAge} {caseData.ptAgeUnit}, {caseData.ptGender}
+            Patient: {clCaseData.ptAge} {clCaseData.ptAgeUnit},{' '}
+            {clCaseData.ptGender}
           </div>
-          <div>Complaint: {caseData.complaint ? caseData.complaint : '--'}</div>
-          <div>Note: {caseData.note ? caseData.note : '--'}</div>
+          <div>
+            Complaint: {clCaseData.complaint ? clCaseData.complaint : '--'}
+          </div>
+          <div>Note: {clCaseData.note ? clCaseData.note : '--'}</div>
         </div>
       </div>
       <div>
@@ -39,4 +42,4 @@ const CaseNav = ({ caseData }: { caseData: any }) => {
   );
 };
 
-export default CaseNav;
+export default ClCaseNav;

@@ -1,10 +1,9 @@
 'use client';
 
-import { error } from 'console';
 import { useRouter } from 'next/navigation';
 import { FieldValues, useForm } from 'react-hook-form';
 
-const CaseForm = () => {
+const ClCaseForm = () => {
   const router = useRouter();
   const {
     register,
@@ -12,41 +11,32 @@ const CaseForm = () => {
     reset,
     formState: { errors, isSubmitting },
   } = useForm();
-  const handleCreateCase = async (data: FieldValues) => {
+
+  const handleCreateClCase = async (data: FieldValues) => {
+    if (!data.ptGender || !data.ptAge) {
+      return;
+    }
     try {
-      if (!data.ptGender || !data.ptAge) {
-        throw new Error('Missing required fields.');
-      }
-      await fetch('/api/case/create', {
+      const response = await fetch('/api/case/create', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ptGender: data.ptGender,
-          ptAge: data.ptAge,
-          ptAgeUnit: data.ptAgeUnit,
-          note: data.note,
-          complaint: data.complaint,
-        }),
-      })
-        .then((response) => {
-          return response.json();
-        })
-        .then((json) => {
-          let newCase = json;
-          router.replace(`/case/${newCase.id}`);
-          reset();
-        });
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) {
+        throw new Error('Network response error');
+      }
+      const newClCase = await response.json();
+      router.replace(`/case/${newClCase.id}`);
+      reset();
     } catch (error) {
       console.error(error);
     }
   };
   return (
     <div>
-      <div className='rounded-md bg-gradient-to-b from-zinc-900 to-zinc-800 p-5 shadow-md shadow-teal-300'>
+      <div className='rounded-md border bg-gradient-to-b from-zinc-900 to-zinc-800 p-5 shadow-md shadow-teal-300'>
         <form
-          onSubmit={handleSubmit(handleCreateCase)}
+          onSubmit={handleSubmit(handleCreateClCase)}
           className='flex flex-col gap-2'
         >
           <label htmlFor='ptGender'>Gender:</label>
@@ -67,6 +57,7 @@ const CaseForm = () => {
           <input
             {...register('ptAge', {
               required: "Patient's age is required.",
+              valueAsNumber: true,
             })}
             type='number'
             className='rounded-md border border-zinc-700 bg-zinc-900 p-1'
@@ -85,7 +76,7 @@ const CaseForm = () => {
           <label htmlFor='complaint'>Complaint:</label>
           <input
             {...register('complaint')}
-            type='string'
+            type='text'
             className='rounded-md border border-zinc-700 bg-zinc-900 p-1'
           />
           <label htmlFor='note'>Note:</label>
@@ -97,7 +88,7 @@ const CaseForm = () => {
           <button
             disabled={isSubmitting}
             type='submit'
-            className='rounded-md border border-zinc-700 bg-zinc-900 p-1 text-white hover:bg-teal-300 hover:text-black disabled:bg-zinc-900'
+            className='rounded-md border border-zinc-700 bg-zinc-900 p-2 text-white hover:bg-teal-300 hover:text-black disabled:bg-zinc-900'
           >
             Create Case
           </button>
@@ -107,4 +98,4 @@ const CaseForm = () => {
   );
 };
 
-export default CaseForm;
+export default ClCaseForm;

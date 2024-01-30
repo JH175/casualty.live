@@ -16,7 +16,7 @@ export default function Home() {
         </div>
       </Link>
       <Link href='/case'>
-        <span className='rounded-md border border-teal-300 p-2 hover:bg-teal-300 hover:text-black'>
+        <span className='rounded-md border border-zinc-700 bg-zinc-900 p-2 text-white hover:bg-teal-300 hover:text-black disabled:bg-zinc-900'>
           Launch
         </span>
       </Link>

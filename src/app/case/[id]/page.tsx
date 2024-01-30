@@ -1,24 +1,29 @@
 import { Header } from '@/components/Header';
-import CaseNav from '../_components/CaseNav';
+import ClCaseNav from '../_components/ClCaseNav';
 import prisma from '@/lib/db';
 import VitalsTable from '../_components/VitalsTable';
 import { redirect } from 'next/navigation';
 
-const CasePage = async ({ params }: { params: { id: string } }) => {
-  const caseId = params.id;
-  const caseData = await prisma.case.findUnique({
+const ClCasePage = async ({ params }: { params: { id: string } }) => {
+  const clCaseId = params.id;
+  const clCaseData = await prisma.clCase.findUnique({
     where: {
-      id: caseId,
+      id: clCaseId,
     },
   });
-  if (!caseData) {
+
+  if (!clCaseData) {
     redirect('/');
   }
-  const entriesData = await prisma.entry.findMany();
+  const entriesData = await prisma.entry.findMany({
+    where: {
+      clCaseId: clCaseId,
+    },
+  });
   return (
     <div className='flex flex-col items-center justify-center gap-5 p-5'>
       <Header />
-      <CaseNav caseData={caseData} />
+      <ClCaseNav clCaseData={clCaseData} />
       <div>
         <VitalsTable data={entriesData} />
       </div>
@@ -26,4 +31,4 @@ const CasePage = async ({ params }: { params: { id: string } }) => {
   );
 };
 
-export default CasePage;
+export default ClCasePage;
