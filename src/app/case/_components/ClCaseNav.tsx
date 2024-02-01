@@ -1,5 +1,6 @@
 'use client';
 
+import Modal from '@/components/Modal';
 import { useState } from 'react';
 import { FaBars } from 'react-icons/fa6';
 
@@ -8,6 +9,7 @@ const ClCaseNav = ({ clCaseData }: { clCaseData: any }) => {
   const toggleExpanded = () => {
     setExpanded(!expanded);
   };
+
   const clCaseDate = clCaseData.createdAt;
   const clCaseDateIso = clCaseDate.toUTCString();
   return (
@@ -27,16 +29,100 @@ const ClCaseNav = ({ clCaseData }: { clCaseData: any }) => {
         </div>
       </div>
       <div>
-        <button className='rounded-md border p-2' onClick={toggleExpanded}>
-          <FaBars />
-        </button>
         {expanded ? (
-          <div className='absolute right-0 flex w-[10rem] flex-col'>
-            <button>Share Case</button>
-            <button>Export Case</button>
-            <button>Delete Case</button>
-          </div>
+          <Modal toggleExpanded={toggleExpanded}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
+            maiores modi laudantium veritatis error rerum numquam commodi quos,
+            suscipit corrupti officiis quasi non soluta blanditiis esse eum,
+            ipsa odit molestias. Lorem ipsum dolor sit amet, consectetur
+            adipisicing elit. Corporis iusto tempore voluptatibus dignissimos
+            quas, maiores provident voluptas aliquam repudiandae! Pariatur
+            soluta eveniet officia! Placeat ex accusamus aliquid porro, non
+            doloremque? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Inventore maiores modi laudantium veritatis error rerum numquam
+            commodi quos, suscipit corrupti officiis quasi non soluta blanditiis
+            esse eum, ipsa odit molestias. Lorem ipsum dolor sit amet,
+            consectetur adipisicing elit. Corporis iusto tempore voluptatibus
+            dignissimos quas, maiores provident voluptas aliquam repudiandae!
+            Pariatur soluta eveniet officia! Placeat ex accusamus aliquid porro,
+            non doloremque? Lorem ipsum dolor sit amet consectetur adipisicing
+            elit. Inventore maiores modi laudantium veritatis error rerum
+            numquam commodi quos, suscipit corrupti officiis quasi non soluta
+            blanditiis esse eum, ipsa odit molestias. Lorem ipsum dolor sit
+            amet, consectetur adipisicing elit. Corporis iusto tempore
+            voluptatibus dignissimos quas, maiores provident voluptas aliquam
+            repudiandae! Pariatur soluta eveniet officia! Placeat ex accusamus
+            aliquid porro, non doloremque? Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Inventore maiores modi laudantium
+            veritatis error rerum numquam commodi quos, suscipit corrupti
+            officiis quasi non soluta blanditiis esse eum, ipsa odit molestias.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis
+            iusto tempore voluptatibus dignissimos quas, maiores provident
+            voluptas aliquam repudiandae! Pariatur soluta eveniet officia!
+            Placeat ex accusamus aliquid porro, non doloremque? aliquid porro,
+            non doloremque? Lorem ipsum dolor sit amet consectetur adipisicing
+            elit. Inventore maiores modi laudantium veritatis error rerum
+            numquam commodi quos, suscipit corrupti officiis quasi non soluta
+            blanditiis esse eum, ipsa odit molestias. Lorem ipsum dolor sit
+            amet, consectetur adipisicing elit. Corporis iusto tempore
+            voluptatibus dignissimos quas, maiores provident voluptas aliquam
+            repudiandae! Pariatur soluta eveniet officia! Placeat ex accusamus
+            aliquid porro, non doloremque? aliquid porro, non doloremque? Lorem
+            ipsum dolor sit amet consectetur adipisicing elit. Inventore maiores
+            modi laudantium veritatis error rerum numquam commodi quos, suscipit
+            corrupti officiis quasi non soluta blanditiis esse eum, ipsa odit
+            molestias. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Corporis iusto tempore voluptatibus dignissimos quas, maiores
+            provident voluptas aliquam repudiandae! Pariatur soluta eveniet
+            officia! Placeat ex accusamus aliquid porro, non doloremque? aliquid
+            porro, non doloremque? Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Inventore maiores modi laudantium veritatis error
+            rerum numquam commodi quos, suscipit corrupti officiis quasi non
+            soluta blanditiis esse eum, ipsa odit molestias. Lorem ipsum dolor
+            sit amet, consectetur adipisicing elit. Corporis iusto tempore
+            voluptatibus dignissimos quas, maiores provident voluptas aliquam
+            repudiandae! Pariatur soluta eveniet officia! Placeat ex accusamus
+            aliquid porro, non doloremque? aliquid porro, non doloremque? Lorem
+            ipsum dolor sit amet consectetur adipisicing elit. Inventore maiores
+            modi laudantium veritatis error rerum numquam commodi quos, suscipit
+            corrupti officiis quasi non soluta blanditiis esse eum, ipsa odit
+            molestias. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Corporis iusto tempore voluptatibus dignissimos quas, maiores
+            provident voluptas aliquam repudiandae! Pariatur soluta eveniet
+            officia! Placeat ex accusamus aliquid porro, non doloremque? aliquid
+            porro, non doloremque? Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Inventore maiores modi laudantium veritatis error
+            rerum numquam commodi quos, suscipit corrupti officiis quasi non
+            soluta blanditiis esse eum, ipsa odit molestias. Lorem ipsum dolor
+            sit amet, consectetur adipisicing elit. Corporis iusto tempore
+            voluptatibus dignissimos quas, maiores provident voluptas aliquam
+            repudiandae! Pariatur soluta eveniet officia! Placeat ex accusamus
+            aliquid porro, non doloremque? aliquid porro, non doloremque? Lorem
+            ipsum dolor sit amet consectetur adipisicing elit. Inventore maiores
+            modi laudantium veritatis error rerum numquam commodi quos, suscipit
+            corrupti officiis quasi non soluta blanditiis esse eum, ipsa odit
+            molestias. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Corporis iusto tempore voluptatibus dignissimos quas, maiores
+            provident voluptas aliquam repudiandae! Pariatur soluta eveniet
+            officia! Placeat ex accusamus aliquid porro, non doloremque? aliquid
+            porro, non doloremque? Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Inventore maiores modi laudantium veritatis error
+            rerum numquam commodi quos, suscipit corrupti officiis quasi non
+            soluta blanditiis esse eum, ipsa odit molestias. Lorem ipsum dolor
+            sit amet, consectetur adipisicing elit. Corporis iusto tempore
+            voluptatibus dignissimos quas, maiores provident voluptas aliquam
+            repudiandae! Pariatur soluta eveniet officia! Placeat ex accusamus
+            aliquid porro, non doloremque?
+          </Modal>
         ) : null}
+        {expanded ? null : (
+          <button
+            className='rounded-md border p-2 hover:border-teal-300'
+            onClick={toggleExpanded}
+          >
+            <FaBars />
+          </button>
+        )}
       </div>
     </div>
   );

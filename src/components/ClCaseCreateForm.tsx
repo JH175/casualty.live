@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { FieldValues, useForm } from 'react-hook-form';
 
-const ClCaseForm = () => {
+const ClCaseCreateForm = () => {
   const router = useRouter();
   const {
     register,
@@ -98,4 +98,4 @@ const ClCaseForm = () => {
   );
 };
 
-export default ClCaseForm;
+export default ClCaseCreateForm;
