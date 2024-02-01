@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { FieldValues, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 const ClCaseCreateForm = () => {
   const router = useRouter();
@@ -24,6 +25,9 @@ const ClCaseCreateForm = () => {
       });
       if (!response.ok) {
         throw new Error('Network response error');
+      }
+      if (response.ok) {
+        toast.success('New Case Created!');
       }
       const newClCase = await response.json();
       router.replace(`/case/${newClCase.id}`);

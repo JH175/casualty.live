@@ -17,7 +17,7 @@ const Modal = ({
           <FaX />
         </button>
       </div>
-      <div className='h-[90vh] w-[90vw] overflow-y-scroll bg-zinc-900 md:w-[50vw] '>
+      <div className='h-[90vh] w-[90vw] overflow-y-scroll rounded-md bg-zinc-900 p-5 md:w-[60vw]'>
         {children}
       </div>
     </div>

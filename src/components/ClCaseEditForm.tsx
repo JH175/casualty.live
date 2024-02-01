@@ -1,5 +1,6 @@
 'use client';
 import { FieldValues, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 const ClCaseEditForm = ({
   clCaseData,
@@ -26,6 +27,9 @@ const ClCaseEditForm = ({
       });
       if (!response.ok) {
         throw new Error('Network response error');
+      }
+      if (response.ok) {
+        toast.success('Case Updated Successfully!');
       }
     } catch (error) {
       console.error(error);

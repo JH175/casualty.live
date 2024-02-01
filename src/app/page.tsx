@@ -5,7 +5,7 @@ import ClCaseCreateForm from '@/components/ClCaseCreateForm';
 
 export default function Home() {
   return (
-    <div className='flex h-screen items-center justify-evenly'>
+    <div className='flex h-screen flex-col items-center justify-evenly md:flex-row'>
       <div className='flex flex-col items-center justify-center'>
         <div className='p-5'>
           <Image src={logo} alt='' width={200} />
