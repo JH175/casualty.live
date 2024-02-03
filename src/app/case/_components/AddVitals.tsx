@@ -57,7 +57,7 @@ const AddVitals = ({ clCaseId }: { clCaseId: string }) => {
 
   return (
     <div>
-      <div className='flex flex-col justify-end rounded-md border bg-gradient-to-b from-zinc-900 to-zinc-800 p-5  shadow-md shadow-teal-300'>
+      <div className='flex flex-col p-5'>
         <form
           onSubmit={handleSubmit(handleAddVitals)}
           className='flex flex-col items-center justify-center gap-2'

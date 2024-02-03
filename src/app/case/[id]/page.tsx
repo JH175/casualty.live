@@ -28,9 +28,6 @@ const ClCasePage = async ({ params }: { params: { id: string } }) => {
       <div>
         <VitalsTable data={entriesData} />
       </div>
-      <div>
-        <AddVitals clCaseId={clCaseId} />
-      </div>
     </div>
   );
 };

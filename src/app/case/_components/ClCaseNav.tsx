@@ -4,14 +4,19 @@ import ClCaseDelete from '@/components/ClCaseDelete';
 import ClCaseEdit from '@/components/ClCaseEdit';
 import ClCaseSharing from '@/components/ClCaseSharing';
 import Modal from '@/components/Modal';
-import Link from 'next/link';
 import { useState } from 'react';
 import { FaBars } from 'react-icons/fa6';
+import AddVitals from './AddVitals';
+import { FaPlusCircle } from 'react-icons/fa';
 
 const ClCaseNav = ({ clCaseData }: { clCaseData: any }) => {
   const [expanded, setExpanded] = useState(false);
   const toggleExpanded = () => {
     setExpanded(!expanded);
+  };
+  const [addMode, setAddMode] = useState(false);
+  const toggleAddMode = () => {
+    setAddMode(!addMode);
   };
 
   const clCaseDate = clCaseData.createdAt;
@@ -32,45 +37,61 @@ const ClCaseNav = ({ clCaseData }: { clCaseData: any }) => {
           <div>Note: {clCaseData.note ? clCaseData.note : '--'}</div>
         </div>
       </div>
-      <div>
-        {expanded ? (
-          <Modal toggleExpanded={toggleExpanded}>
-            <div className='flex h-full w-full flex-col'>
-              <div>
-                <div
-                  id='details'
-                  className='flex flex-col items-center justify-center p-5'
-                >
-                  <ClCaseEdit
-                    toggleModal={toggleExpanded}
-                    clCaseData={clCaseData}
-                  />
-                </div>
-                <div
-                  id='details'
-                  className='flex flex-col items-center justify-center p-5'
-                >
-                  <ClCaseSharing clCaseId={clCaseData.id} />
-                </div>
-                <div
-                  id='delete'
-                  className='flex flex-col items-center justify-center p-5'
-                >
-                  <ClCaseDelete clCaseId={clCaseData.id} />
-                </div>
+      {addMode ? (
+        <Modal toggleExpanded={toggleAddMode}>
+          <div className='flex h-full w-full flex-col'>
+            <AddVitals clCaseId={clCaseData.id} />
+          </div>
+        </Modal>
+      ) : null}
+      {expanded ? (
+        <Modal toggleExpanded={toggleExpanded}>
+          <div className='flex h-full w-full flex-col'>
+            <div>
+              <div
+                id='details'
+                className='flex flex-col items-center justify-center p-5'
+              >
+                <ClCaseEdit
+                  toggleModal={toggleExpanded}
+                  clCaseData={clCaseData}
+                />
+              </div>
+              <div
+                id='details'
+                className='flex flex-col items-center justify-center p-5'
+              >
+                <ClCaseSharing clCaseId={clCaseData.id} />
+              </div>
+              <div
+                id='delete'
+                className='flex flex-col items-center justify-center p-5'
+              >
+                <ClCaseDelete clCaseId={clCaseData.id} />
               </div>
             </div>
-          </Modal>
-        ) : null}
-        {expanded ? null : (
+          </div>
+        </Modal>
+      ) : null}
+
+      {expanded || addMode ? null : (
+        <div className='flex gap-2'>
           <button
-            className='rounded-md border p-2 hover:border-teal-300'
+            className='h-10 rounded-md border p-2 hover:border-teal-300'
+            onClick={toggleAddMode}
+          >
+            <div className='flex items-center gap-2'>
+              <FaPlusCircle /> Vitals
+            </div>
+          </button>
+          <button
+            className='h-10 rounded-md border p-2 hover:border-teal-300'
             onClick={toggleExpanded}
           >
             <FaBars />
           </button>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
