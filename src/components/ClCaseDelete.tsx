@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 
-const ClCaseDeleteForm = ({ clCaseId }: { clCaseId: string }) => {
+const ClCaseDelete = ({ clCaseId }: { clCaseId: string }) => {
   const router = useRouter();
 
   const {
@@ -61,4 +61,4 @@ const ClCaseDeleteForm = ({ clCaseId }: { clCaseId: string }) => {
   );
 };
 
-export default ClCaseDeleteForm;
+export default ClCaseDelete;

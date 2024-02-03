@@ -10,7 +10,7 @@ generator client {
 
 model clCase {
   id           String    @id @default(uuid())
-  Entries      Entry[]
+  Vitals       Vitals[]
   createdAt    DateTime  @default(now())
   updatedAt    DateTime?
   isShared     Boolean?  @default(false)
@@ -30,13 +30,12 @@ model clCase {
   ptStatus     String?
 }
 
-model Entry {
-  id            String    @id @default(uuid())
-  clCase        clCase?   @relation(fields: [clCaseId], references: [id], onDelete: Cascade)
+model Vitals {
+  id            String   @id @default(uuid())
+  clCase        clCase?  @relation(fields: [clCaseId], references: [id], onDelete: Cascade)
   clCaseId      String?
-  entryDateTime DateTime?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime?
+  entryDateTime String?
+  createdAt     DateTime @default(now())
   gcsTotal      Int?
   gcsE          Int?
   gcsV          Int?
@@ -53,11 +52,11 @@ model Entry {
   temp          Float?
   tempUnit      String?
   bgl           Int?
-  bglUnit       Int?
+  bglUnit       String?
   urineOut      Int?
   shockIndex    Float?
   rts           Float?
-  pain10        Int?
+  pain          Int?
   note          String?
 
   @@index([clCaseId])

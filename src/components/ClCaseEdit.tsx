@@ -2,7 +2,7 @@
 import { FieldValues, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 
-const ClCaseEditForm = ({
+const ClCaseEdit = ({
   clCaseData,
   toggleModal,
 }: {
@@ -112,4 +112,4 @@ const ClCaseEditForm = ({
   );
 };
 
-export default ClCaseEditForm;
+export default ClCaseEdit;

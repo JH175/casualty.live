@@ -8,7 +8,7 @@ const Modal = ({
   toggleExpanded: any;
 }) => {
   return (
-    <div className='fixed left-0 top-0 z-50 flex h-full w-full flex-col items-center bg-[#000000bb]'>
+    <div className='fixed left-0 top-0 z-50 flex h-full w-full flex-col items-center bg-[#000000bb] p-5'>
       <div className='flex w-full justify-end'>
         <button
           onClick={() => toggleExpanded()}

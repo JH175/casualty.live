@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { FieldValues, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 
-const ClCaseCreateForm = () => {
+const ClCaseCreate = () => {
   const router = useRouter();
   const {
     register,
@@ -102,4 +102,4 @@ const ClCaseCreateForm = () => {
   );
 };
 
-export default ClCaseCreateForm;
+export default ClCaseCreate;

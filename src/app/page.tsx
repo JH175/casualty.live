@@ -1,7 +1,6 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import logo from '../../public/logo.png';
-import ClCaseCreateForm from '@/components/ClCaseCreateForm';
+import ClCaseCreate from '@/components/ClCaseCreate';
 
 export default function Home() {
   return (
@@ -23,7 +22,7 @@ export default function Home() {
       </div>
       <div className='flex flex-col gap-5'>
         <span className='text-center text-lg'>Create & Share A New Case:</span>
-        <ClCaseCreateForm />
+        <ClCaseCreate />
       </div>
     </div>
   );

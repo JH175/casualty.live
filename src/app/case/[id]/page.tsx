@@ -2,6 +2,7 @@ import ClCaseNav from '../_components/ClCaseNav';
 import prisma from '@/lib/db';
 import VitalsTable from '../_components/VitalsTable';
 import { redirect } from 'next/navigation';
+import AddVitals from '../_components/AddVitals';
 
 const ClCasePage = async ({ params }: { params: { id: string } }) => {
   const clCaseId = params.id;
@@ -15,17 +16,20 @@ const ClCasePage = async ({ params }: { params: { id: string } }) => {
     redirect('/');
   }
 
-  const entriesData = await prisma.entry.findMany({
+  const entriesData = await prisma.vitals.findMany({
     where: {
       clCaseId: clCaseId,
     },
   });
 
   return (
-    <div className='flex flex-col items-center justify-center'>
+    <div className='flex flex-col items-center justify-center p-5'>
       <ClCaseNav clCaseData={clCaseData} />
       <div>
         <VitalsTable data={entriesData} />
+      </div>
+      <div>
+        <AddVitals clCaseId={clCaseId} />
       </div>
     </div>
   );

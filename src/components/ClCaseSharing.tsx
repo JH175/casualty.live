@@ -1,10 +1,8 @@
 'use client';
-import { useState } from 'react';
-import { FieldValues, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { FaCopy } from 'react-icons/fa6';
 
-const ClCaseSharingForm = ({ clCaseId }: { clCaseId: any }) => {
+const ClCaseSharing = ({ clCaseId }: { clCaseId: any }) => {
   const shareLink = `http://localhost:3000/case/${clCaseId}`;
   const copyShareLink = () => {
     try {
@@ -26,4 +24,4 @@ const ClCaseSharingForm = ({ clCaseId }: { clCaseId: any }) => {
   );
 };
 
-export default ClCaseSharingForm;
+export default ClCaseSharing;

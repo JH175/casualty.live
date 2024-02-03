@@ -1,8 +1,8 @@
 'use client';
 
-import ClCaseDeleteForm from '@/components/ClCaseDeleteForm';
-import ClCaseEditForm from '@/components/ClCaseEditForm';
-import ClCaseSharingForm from '@/components/ClCaseSharingForm';
+import ClCaseDelete from '@/components/ClCaseDelete';
+import ClCaseEdit from '@/components/ClCaseEdit';
+import ClCaseSharing from '@/components/ClCaseSharing';
 import Modal from '@/components/Modal';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -41,7 +41,7 @@ const ClCaseNav = ({ clCaseData }: { clCaseData: any }) => {
                   id='details'
                   className='flex flex-col items-center justify-center p-5'
                 >
-                  <ClCaseEditForm
+                  <ClCaseEdit
                     toggleModal={toggleExpanded}
                     clCaseData={clCaseData}
                   />
@@ -50,13 +50,13 @@ const ClCaseNav = ({ clCaseData }: { clCaseData: any }) => {
                   id='details'
                   className='flex flex-col items-center justify-center p-5'
                 >
-                  <ClCaseSharingForm clCaseId={clCaseData.id} />
+                  <ClCaseSharing clCaseId={clCaseData.id} />
                 </div>
                 <div
                   id='delete'
                   className='flex flex-col items-center justify-center p-5'
                 >
-                  <ClCaseDeleteForm clCaseId={clCaseData.id} />
+                  <ClCaseDelete clCaseId={clCaseData.id} />
                 </div>
               </div>
             </div>
