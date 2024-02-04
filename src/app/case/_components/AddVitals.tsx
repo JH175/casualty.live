@@ -6,7 +6,7 @@ import { Vitals } from '@prisma/client';
 import VitalsInput from './VitalsInput';
 import VitalsInputSelect from './VitalsInputSelect';
 import { useState } from 'react';
-import { calculateGcs } from '@/lib/math';
+import { calculateGcs, calculateMap } from '@/lib/math';
 import { FaBrain, FaHeart, FaLungs, FaPerson } from 'react-icons/fa6';
 
 const AddVitals = ({ clCaseId }: { clCaseId: string }) => {
@@ -19,7 +19,6 @@ const AddVitals = ({ clCaseId }: { clCaseId: string }) => {
   } = useForm<Vitals>();
 
   const [gcsTotal, setGcsTotal] = useState<number | null>(null);
-
   const handleGcs = () => {
     const gcsValues = watch(['gcsE', 'gcsV', 'gcsM']);
     const [gcsE, gcsV, gcsM] = gcsValues;
@@ -30,11 +29,24 @@ const AddVitals = ({ clCaseId }: { clCaseId: string }) => {
       }
     }
   };
+  const [map, setMap] = useState<number | null>(null);
+  const handleMap = () => {
+    const mapValues = watch(['sbp', 'dbp']);
+    const [sbp, dbp] = mapValues;
+    if (sbp && dbp) {
+      const total = calculateMap(sbp, dbp);
+      if (total) {
+        setMap(total);
+      }
+    }
+  };
 
   const handleAddVitals = async ({ ...data }: FieldValues) => {
     const entryData = {
       clCaseId,
       ...data,
+      gcsTotal,
+      map,
     };
     try {
       const response = await fetch('/api/vitals/create', {
@@ -128,7 +140,9 @@ const AddVitals = ({ clCaseId }: { clCaseId: string }) => {
             type='number'
             label='PR'
             placeholder='/min'
-            validationSchema={{ valueAsNumber: true }}
+            validationSchema={{
+              valueAsNumber: true,
+            }}
             register={register}
           />
           <div className='flex items-center gap-1'>
@@ -137,7 +151,12 @@ const AddVitals = ({ clCaseId }: { clCaseId: string }) => {
               name='sbp'
               type='number'
               placeholder='SBP'
-              validationSchema={{ valueAsNumber: true }}
+              validationSchema={{
+                valueAsNumber: true,
+                onChange() {
+                  handleMap();
+                },
+              }}
               register={register}
             />
             /
@@ -145,7 +164,12 @@ const AddVitals = ({ clCaseId }: { clCaseId: string }) => {
               name='dbp'
               type='number'
               placeholder='DBP'
-              validationSchema={{ valueAsNumber: true }}
+              validationSchema={{
+                valueAsNumber: true,
+                onChange() {
+                  handleMap();
+                },
+              }}
               register={register}
             />
           </div>
@@ -191,12 +215,11 @@ const AddVitals = ({ clCaseId }: { clCaseId: string }) => {
             <VitalsInputSelect
               name='tempUnit'
               options={[
-                { name: '°F', value: 'F' },
-                { name: '°C', value: 'C' },
+                { name: '°F', value: '°F' },
+                { name: '°C', value: '°C' },
               ]}
               register={register}
               defaultValue={'F'}
-              validationSchema={{ valueAsNumber: true }}
             />
           </div>
           <div className='flex items-center gap-1'>

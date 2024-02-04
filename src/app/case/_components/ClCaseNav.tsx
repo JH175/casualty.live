@@ -85,7 +85,7 @@ const ClCaseNav = ({ clCaseData }: { clCaseData: any }) => {
             </div>
           </button>
           <button
-            className='h-10 rounded-md border p-2 hover:border-teal-300'
+            className='flex h-10 w-10 items-center justify-center rounded-md border p-2  hover:border-teal-300'
             onClick={toggleExpanded}
           >
             <FaBars />

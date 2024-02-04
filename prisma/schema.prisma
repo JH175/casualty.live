@@ -9,25 +9,14 @@ generator client {
 }
 
 model clCase {
-  id           String    @id @default(uuid())
-  Vitals       Vitals[]
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime?
-  isShared     Boolean?  @default(false)
-  sharePass    String?
-  editPass     String?
-  expiresOn    DateTime?
-  ptGender     String
-  ptAgeUnit    String
-  ptAge        Int
-  ptWt         Int?
-  ptWtUnit     String?
-  ptHt         Int?
-  ptHtUnit     String?
-  complaint    String?
-  note         String?
-  clCaseStatus String?
-  ptStatus     String?
+  id        String   @id @default(uuid())
+  Vitals    Vitals[]
+  createdAt DateTime @default(now())
+  ptGender  String
+  ptAge     Int
+  ptAgeUnit String
+  complaint String?
+  note      String?
 }
 
 model Vitals {
@@ -47,17 +36,11 @@ model Vitals {
   sbp           Int?
   dbp           Int?
   map           Int?
-  ecg4          String?
-  ecg12         String?
   temp          Float?
   tempUnit      String?
   bgl           Int?
   bglUnit       String?
-  urineOut      Int?
-  shockIndex    Float?
-  rts           Float?
   pain          Int?
-  note          String?
 
   @@index([clCaseId])
 }

@@ -29,7 +29,6 @@ const ClCaseDelete = ({ clCaseId }: { clCaseId: string }) => {
       <span>
         Deleting this case is permanent, please type DELETE CASE to confirm.
       </span>
-
       <form
         onSubmit={handleSubmit(handleDeleteClCase)}
         className='flex flex-col gap-2'
@@ -46,9 +45,7 @@ const ClCaseDelete = ({ clCaseId }: { clCaseId: string }) => {
           type='text'
           className='rounded-md border border-zinc-700 bg-zinc-900 p-1'
         />
-        {errors.confirmation && (
-          <p className='text-red-300'>{`${errors.confirmation.message}`}</p>
-        )}
+
         <button
           disabled={isSubmitting}
           type='submit'
@@ -57,6 +54,9 @@ const ClCaseDelete = ({ clCaseId }: { clCaseId: string }) => {
           Delete
         </button>
       </form>
+      {errors.confirmation && (
+        <p className='text-red-300'>{`${errors.confirmation.message}`}</p>
+      )}
     </div>
   );
 };
