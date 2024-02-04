@@ -5,7 +5,8 @@ export async function POST(req: NextRequest) {
   try {
     const {
       clCaseId,
-      entryDateTime,
+      entryDate,
+      entryTime,
       gcsTotal,
       gcsE,
       gcsV,
@@ -36,7 +37,8 @@ export async function POST(req: NextRequest) {
     const vitals = await prisma.vitals.create({
       data: {
         clCaseId,
-        entryDateTime,
+        entryDate,
+        entryTime,
         gcsTotal,
         gcsE,
         gcsV,

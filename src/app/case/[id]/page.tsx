@@ -1,15 +1,7 @@
-import ClCaseNav from '../_components/ClCaseNav';
 import prisma from '@/lib/db';
 import { redirect } from 'next/navigation';
-import {
-  FaBoltLightning,
-  FaBrain,
-  FaHeart,
-  FaLungs,
-  FaPerson,
-} from 'react-icons/fa6';
-import VitalsSection from '../_components/VitalsSection';
-import VitalsEntry from '../_components/VitalsSet';
+import { ClCaseNav } from '../_components/case';
+import { VitalsEntry } from '../_components/vitals';
 
 const ClCasePage = async ({ params }: { params: { id: string } }) => {
   const clCaseId = params.id;

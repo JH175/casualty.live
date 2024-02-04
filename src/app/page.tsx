@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import logo from '../../public/logo.png';
-import ClCaseCreate from '@/components/ClCaseCreate';
+import { ClCaseCreate } from './case/_components/case';
 
 export default function Home() {
   return (

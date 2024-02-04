@@ -3,13 +3,14 @@
 import { FieldValues, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Vitals } from '@prisma/client';
-import VitalsInput from './VitalsInput';
-import VitalsInputSelect from './VitalsInputSelect';
+
 import { useState } from 'react';
 import { calculateGcs, calculateMap } from '@/lib/math';
 import { FaBrain, FaHeart, FaLungs, FaPerson } from 'react-icons/fa6';
+import FormInput from '@/components/FormInput';
+import FormSelect from '@/components/FormSelect';
 
-const AddVitals = ({ clCaseId }: { clCaseId: string }) => {
+const VitalsAddForm = ({ clCaseId }: { clCaseId: string }) => {
   const {
     register,
     handleSubmit,
@@ -40,7 +41,6 @@ const AddVitals = ({ clCaseId }: { clCaseId: string }) => {
       }
     }
   };
-
   const handleAddVitals = async ({ ...data }: FieldValues) => {
     const entryData = {
       clCaseId,
@@ -74,11 +74,15 @@ const AddVitals = ({ clCaseId }: { clCaseId: string }) => {
           onSubmit={handleSubmit(handleAddVitals)}
           className='flex flex-col items-center justify-center gap-2'
         >
+          <div>
+            <FormInput name='entryDate' type='date' register={register} />
+            <FormInput name='entryTime' type='time' register={register} />
+          </div>
           <div className='flex flex-col items-center gap-2'>
             <FaBrain className='text-teal-300' size={25} />
             <span>GCS: {gcsTotal ? gcsTotal : '--'}</span>{' '}
           </div>
-          <VitalsInputSelect
+          <FormSelect
             name='gcsE'
             label='Eye Response'
             options={[
@@ -95,7 +99,7 @@ const AddVitals = ({ clCaseId }: { clCaseId: string }) => {
             }}
             register={register}
           />
-          <VitalsInputSelect
+          <FormSelect
             name='gcsV'
             label='Verbal Response'
             options={[
@@ -113,7 +117,7 @@ const AddVitals = ({ clCaseId }: { clCaseId: string }) => {
             }}
             register={register}
           />
-          <VitalsInputSelect
+          <FormSelect
             name='gcsM'
             label='Motor Response'
             options={[
@@ -135,7 +139,7 @@ const AddVitals = ({ clCaseId }: { clCaseId: string }) => {
           <div className='flex flex-col items-center gap-2  border-teal-300'>
             <FaHeart className='text-teal-300' size={25} />
           </div>
-          <VitalsInput
+          <FormInput
             name='pr'
             type='number'
             label='PR'
@@ -147,7 +151,7 @@ const AddVitals = ({ clCaseId }: { clCaseId: string }) => {
           />
           <div className='flex items-center gap-1'>
             <span>BP: </span>
-            <VitalsInput
+            <FormInput
               name='sbp'
               type='number'
               placeholder='SBP'
@@ -160,7 +164,7 @@ const AddVitals = ({ clCaseId }: { clCaseId: string }) => {
               register={register}
             />
             /
-            <VitalsInput
+            <FormInput
               name='dbp'
               type='number'
               placeholder='DBP'
@@ -176,7 +180,7 @@ const AddVitals = ({ clCaseId }: { clCaseId: string }) => {
           <div className='flex flex-col items-center gap-2'>
             <FaLungs className='text-teal-300' size={25} />
           </div>
-          <VitalsInput
+          <FormInput
             name='rr'
             label='RR'
             type='number'
@@ -184,7 +188,7 @@ const AddVitals = ({ clCaseId }: { clCaseId: string }) => {
             validationSchema={{ valueAsNumber: true }}
             register={register}
           />
-          <VitalsInput
+          <FormInput
             name='spo2'
             label='SPO2'
             type='number'
@@ -192,7 +196,7 @@ const AddVitals = ({ clCaseId }: { clCaseId: string }) => {
             validationSchema={{ valueAsNumber: true }}
             register={register}
           />
-          <VitalsInput
+          <FormInput
             name='etco2'
             label='ETCO2'
             type='number'
@@ -204,7 +208,7 @@ const AddVitals = ({ clCaseId }: { clCaseId: string }) => {
             <FaPerson className='text-teal-300' size={25} />
           </div>
           <div className='flex items-center gap-1'>
-            <VitalsInput
+            <FormInput
               name='temp'
               label='TEMP'
               type='number'
@@ -212,25 +216,25 @@ const AddVitals = ({ clCaseId }: { clCaseId: string }) => {
               validationSchema={{ valueAsNumber: true }}
               register={register}
             />
-            <VitalsInputSelect
+            <FormSelect
               name='tempUnit'
               options={[
                 { name: '°F', value: '°F' },
                 { name: '°C', value: '°C' },
               ]}
               register={register}
-              defaultValue={'F'}
+              defaultValue={'°F'}
             />
           </div>
           <div className='flex items-center gap-1'>
-            <VitalsInput
+            <FormInput
               name='bgl'
               label='BGL'
               type='number'
               validationSchema={{ valueAsNumber: true }}
               register={register}
             />
-            <VitalsInputSelect
+            <FormSelect
               name='bglUnit'
               options={[
                 { name: 'mg/dL', value: 'mg/dL' },
@@ -242,7 +246,7 @@ const AddVitals = ({ clCaseId }: { clCaseId: string }) => {
           </div>
           <div className='flex items-center gap-1'>
             <label htmlFor='pain'>Pain Scale: </label>
-            <VitalsInputSelect
+            <FormSelect
               name='pain'
               options={[
                 { name: '0', value: 0 },
@@ -274,4 +278,4 @@ const AddVitals = ({ clCaseId }: { clCaseId: string }) => {
   );
 };
 
-export default AddVitals;
+export default VitalsAddForm;

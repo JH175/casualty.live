@@ -1,12 +1,9 @@
 'use client';
-
-import ClCaseDelete from '@/components/ClCaseDelete';
-import ClCaseEdit from '@/components/ClCaseEdit';
-import ClCaseSharing from '@/components/ClCaseSharing';
-import Modal from '@/components/Modal';
 import { useState } from 'react';
+import { VitalsAddForm } from '../vitals';
+import { ClCaseDelete, ClCaseEdit, ClCaseSharing } from '.';
+import Modal from '@/components/Modal';
 import { FaBars } from 'react-icons/fa6';
-import AddVitals from './AddVitals';
 import { FaPlusCircle } from 'react-icons/fa';
 
 const ClCaseNav = ({ clCaseData }: { clCaseData: any }) => {
@@ -40,7 +37,7 @@ const ClCaseNav = ({ clCaseData }: { clCaseData: any }) => {
       {addMode ? (
         <Modal toggleExpanded={toggleAddMode}>
           <div className='flex h-full w-full flex-col'>
-            <AddVitals clCaseId={clCaseData.id} />
+            <VitalsAddForm clCaseId={clCaseData.id} />
           </div>
         </Modal>
       ) : null}

@@ -1,18 +1,16 @@
-const VitalsInputSelect = ({
+const FormSelect = ({
   name,
   label,
-  step,
+  width,
   register,
-  placeholder,
   options,
   validationSchema,
   defaultValue,
 }: {
   name: string;
   label?: string;
-  step?: number;
+  width?: string;
   register: any;
-  placeholder?: string;
   options: { name: string; value: number | string }[];
   validationSchema?: any;
   defaultValue?: any;
@@ -23,10 +21,8 @@ const VitalsInputSelect = ({
       <select
         {...register(name, validationSchema)}
         id={name}
-        step={step}
-        placeholder={placeholder}
         defaultValue={defaultValue}
-        className='w-full rounded-md border border-zinc-700 bg-zinc-900 p-1 text-center'
+        className={`h-8 rounded-md border border-zinc-700 bg-zinc-900 text-center ${width}`}
       >
         <option value=''>--</option>
         {options.map((option) => (
@@ -39,4 +35,4 @@ const VitalsInputSelect = ({
   );
 };
 
-export default VitalsInputSelect;
+export default FormSelect;
