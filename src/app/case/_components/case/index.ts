@@ -2,6 +2,14 @@ import ClCaseCreate from './ClCaseCreate';
 import ClCaseNav from './ClCaseNav';
 import ClCaseDelete from './ClCaseDelete';
 import ClCaseEdit from './ClCaseEdit';
-import ClCaseSharing from './ClCaseSharing';
+import ClCaseShareButton from './ClCaseShareButton';
+import ClCaseEditButton from './CaseEditButton';
 
-export { ClCaseCreate, ClCaseDelete, ClCaseEdit, ClCaseNav, ClCaseSharing };
+export {
+  ClCaseCreate,
+  ClCaseDelete,
+  ClCaseEdit,
+  ClCaseNav,
+  ClCaseShareButton,
+  ClCaseEditButton,
+};

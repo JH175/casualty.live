@@ -20,28 +20,27 @@ model clCase {
 }
 
 model Vitals {
-  id        String   @id @default(uuid())
-  clCase    clCase?  @relation(fields: [clCaseId], references: [id], onDelete: Cascade)
-  clCaseId  String?
-  entryDate String?
-  entryTime String?
-  createdAt DateTime @default(now())
-  gcsTotal  Int?
-  gcsE      Int?
-  gcsV      Int?
-  gcsM      Int?
-  rr        Int?
-  spo2      Int?
-  etco2     Int?
-  pr        Int?
-  sbp       Int?
-  dbp       Int?
-  map       Int?
-  temp      Float?
-  tempUnit  String?
-  bgl       Int?
-  bglUnit   String?
-  pain      Int?
+  id            String   @id @default(uuid())
+  clCase        clCase?  @relation(fields: [clCaseId], references: [id], onDelete: Cascade)
+  clCaseId      String?
+  entryDateTime String?
+  createdAt     DateTime @default(now())
+  gcsTotal      Int?
+  gcsE          Int?
+  gcsV          Int?
+  gcsM          Int?
+  rr            Int?
+  spo2          Int?
+  etco2         Int?
+  pr            Int?
+  sbp           Int?
+  dbp           Int?
+  map           Int?
+  temp          Float?
+  tempUnit      String?
+  bgl           Int?
+  bglUnit       String?
+  pain          Int?
 
   @@index([clCaseId])
 }

@@ -1,14 +1,12 @@
 'use client';
+import Button from '@/components/Button';
+import FormInput from '@/components/FormInput';
+import FormSelect from '@/components/FormSelect';
+import FormTextArea from '@/components/FormTextArea';
 import { FieldValues, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 
-const ClCaseEdit = ({
-  clCaseData,
-  toggleModal,
-}: {
-  clCaseData: any;
-  toggleModal: any;
-}) => {
+const ClCaseEdit = ({ clCaseData }: { clCaseData: any }) => {
   const {
     register,
     handleSubmit,
@@ -36,77 +34,71 @@ const ClCaseEdit = ({
     }
   };
   return (
-    <div className='flex flex-col items-center justify-center gap-2'>
-      <span>Edit Case:</span>
+    <div className='flex justify-center'>
       <form
         onSubmit={handleSubmit(handleEditClCase)}
         className='flex flex-col gap-2'
       >
-        <label htmlFor='ptGender'>Gender:</label>
-        <select
-          {...register('ptGender', {
-            required: "Patient's gender is required.",
-          })}
-          defaultValue={clCaseData.ptGender}
-          className='rounded-md border border-zinc-700 bg-zinc-900 p-1'
-        >
-          <option value=''>--</option>
-          <option value='Male'>Male</option>
-          <option value='Female'>Female</option>
-        </select>
-        {errors.ptGender && (
-          <p className='text-red-300'>{`${errors.ptGender.message}`}</p>
-        )}
-        <label htmlFor='ptAge'>Age:</label>
-        <input
-          {...register('ptAge', {
-            required: "Patient's age is required.",
-            valueAsNumber: true,
-          })}
+        <FormInput
+          name='ptAge'
           type='number'
+          label='Age'
+          width='w-44'
           defaultValue={clCaseData.ptAge}
-          className='rounded-md border border-zinc-700 bg-zinc-900 p-1'
+          validationSchema={{
+            valueAsNumber: true,
+            required: "Patient's age is required.",
+          }}
+          register={register}
         />
-        {errors.ptAge && (
-          <p className='text-red-300'>{`${errors.ptAge.message}`}</p>
-        )}
-        <select
-          {...register('ptAgeUnit')}
+        <FormSelect
+          name='ptAgeUnit'
+          width='w-44'
           defaultValue={clCaseData.ptAgeUnit}
-          className='rounded-md border border-zinc-700 bg-zinc-900 p-1'
-        >
-          <option value='Y/O'>Years</option>
-          <option value='MO'>Months</option>
-        </select>
-        <label htmlFor='complaint'>Complaint:</label>
-        <input
-          {...register('complaint')}
-          type='text'
-          defaultValue={clCaseData.complaint}
-          className='rounded-md border border-zinc-700 bg-zinc-900 p-1'
-        />
-        <label htmlFor='note'>Note:</label>
-        <textarea
-          {...register('note')}
-          defaultValue={clCaseData.note}
-          className='rounded-md border border-zinc-700 bg-zinc-900 p-1'
+          options={[
+            { name: 'Years', value: 'Y/O' },
+            { name: 'Months', value: 'MO' },
+          ]}
+          register={register}
         />
 
-        <button
-          disabled={isSubmitting}
-          type='submit'
-          className='rounded-md border border-zinc-700 bg-zinc-900 p-2 text-white hover:bg-teal-300 hover:text-black disabled:bg-zinc-900'
-        >
-          Save
-        </button>
-        <button
-          onClick={() => {
-            toggleModal();
+        <FormSelect
+          name='ptGender'
+          label='Gender'
+          width='w-44'
+          defaultValue={clCaseData.ptGender}
+          options={[
+            { name: 'Male', value: 'Male' },
+            { name: 'Female', value: 'Female' },
+          ]}
+          validationSchema={{
+            required: "Patient's gender is required.",
           }}
+          register={register}
+        />
+        <FormInput
+          name='complaint'
+          type='text'
+          label='Complaint'
+          width='w-44'
+          defaultValue={clCaseData.complaint}
+          register={register}
+        />
+        <FormTextArea
+          name='note'
+          label='Note'
+          width='w-44'
+          height='h-32'
+          defaultValue={clCaseData.note}
+          register={register}
+        />
+        <Button
+          name='Save Case'
+          width='w-44'
+          height='h-8'
           type='submit'
-        >
-          Cancel
-        </button>
+          disabled={isSubmitting}
+        />
       </form>
     </div>
   );

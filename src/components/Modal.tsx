@@ -12,14 +12,12 @@ const Modal = ({
       <div className='flex w-full justify-end'>
         <button
           onClick={() => toggleExpanded()}
-          className='flex h-10 w-10 items-center justify-center rounded-md border p-2  hover:border-teal-300'
+          className='flex h-8 items-center justify-center rounded-md border border-zinc-700 p-2 hover:border-teal-300'
         >
           <FaX />
         </button>
       </div>
-      <div className='h-[90vh] w-[90vw] overflow-y-scroll rounded-md bg-zinc-900 p-5 md:w-[60vw]'>
-        {children}
-      </div>
+      <div className='overflow-y-scroll rounded-md'>{children}</div>
     </div>
   );
 };

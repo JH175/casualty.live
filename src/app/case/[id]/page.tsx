@@ -19,6 +19,9 @@ const ClCasePage = async ({ params }: { params: { id: string } }) => {
     where: {
       clCaseId: clCaseId,
     },
+    orderBy: {
+      entryDateTime: 'asc',
+    },
   });
 
   return (

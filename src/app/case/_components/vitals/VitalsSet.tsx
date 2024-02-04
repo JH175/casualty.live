@@ -3,9 +3,8 @@ import VitalsSection from './VitalsSection';
 
 const VitalsEntry = ({ vitalsSet }: { vitalsSet: any }) => {
   return (
-    <div className='flex flex-col items-center justify-center rounded-md border p-2'>
-      <div>{vitalsSet.entryDate}</div>
-      <div>{vitalsSet.entryTime}</div>
+    <div className='flex flex-col items-center justify-center rounded-md border border-zinc-700 p-2 text-sm'>
+      <div>{vitalsSet.entryDateTime}</div>
       <VitalsSection>
         <FaBrain className='text-teal-300' />
         GCS: {vitalsSet.gcsTotal ? vitalsSet.gcsTotal : ' -- '}

@@ -21,7 +21,11 @@ const FormInput = ({
 }) => {
   return (
     <div className='flex flex-col gap-1'>
-      {label ? <label htmlFor={name}>{label}: </label> : null}
+      {label ? (
+        <label className='text-[.9rem] italic text-zinc-300' htmlFor={name}>
+          {label}:{' '}
+        </label>
+      ) : null}
       <input
         {...register(name, validationSchema)}
         id={name}
