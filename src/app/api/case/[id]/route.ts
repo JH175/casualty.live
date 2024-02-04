@@ -38,18 +38,7 @@ export async function PUT(
 ) {
   try {
     const clCaseId = params.id;
-    const {
-      updatedAt,
-      isShared,
-      sharePass,
-      editPass,
-      expiresOn,
-      ptGender,
-      ptAge,
-      ptAgeUnit,
-      complaint,
-      note,
-    } = await req.json();
+    const { ptGender, ptAge, ptAgeUnit, complaint, note } = await req.json();
 
     const existingCase = await prisma.clCase.findUnique({
       where: { id: clCaseId },
@@ -65,11 +54,6 @@ export async function PUT(
     const updatedCase = await prisma.clCase.update({
       where: { id: clCaseId },
       data: {
-        updatedAt,
-        isShared,
-        sharePass,
-        editPass,
-        expiresOn,
         ptGender,
         ptAge,
         ptAgeUnit,
