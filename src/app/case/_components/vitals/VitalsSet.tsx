@@ -1,10 +1,11 @@
 import { FaBrain, FaHeart, FaLungs, FaPerson } from 'react-icons/fa6';
 import VitalsSection from './VitalsSection';
+import { VitalsEditButton } from '.';
 
 const VitalsEntry = ({ vitalsSet }: { vitalsSet: any }) => {
   return (
-    <div className='flex flex-col items-center justify-center rounded-md border border-zinc-700 p-2 text-sm'>
-      <div>{vitalsSet.entryDateTime}</div>
+    <div className='flex w-36 flex-col items-center justify-center rounded-md border border-zinc-700 p-2 text-sm'>
+      <div className='text-center'>{vitalsSet.entryDateTime}</div>
       <VitalsSection>
         <FaBrain className='text-teal-300' />
         GCS: {vitalsSet.gcsTotal ? vitalsSet.gcsTotal : ' -- '}
@@ -47,6 +48,9 @@ const VitalsEntry = ({ vitalsSet }: { vitalsSet: any }) => {
           {vitalsSet.bgl ? vitalsSet.bglUnit : null}
         </div>
         <div>Pain: {vitalsSet.pain ? `${vitalsSet.pain}/10` : ' -- '}</div>
+        <div className='pt-2'>
+          <VitalsEditButton vitalsSet={vitalsSet} />
+        </div>
       </VitalsSection>
     </div>
   );
