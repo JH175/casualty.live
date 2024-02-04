@@ -3,35 +3,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/db';
 
-export async function GET({ params }: { params: { id: string } }) {
-  try {
-    const clCaseId = params.id;
-    const clCase = await prisma.clCase.findUnique({
-      where: { id: clCaseId },
-    });
-    if (!clCase) {
-      return new NextResponse(JSON.stringify({ error: 'Case not found' }), {
-        status: 404,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    }
-    return new NextResponse(JSON.stringify(clCase), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' },
-    });
-  } catch (error: unknown) {
-    let status = 500;
-    let errorMessage = 'Error fetching case';
-    if (error instanceof Error) {
-      errorMessage = error.message;
-    }
-    return new NextResponse(JSON.stringify({ error: errorMessage }), {
-      status,
-      headers: { 'Content-Type': 'application/json' },
-    });
-  }
-}
-
 export async function PUT(
   req: NextRequest,
   { params }: { params: { id: string } }
