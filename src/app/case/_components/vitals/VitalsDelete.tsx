@@ -24,7 +24,6 @@ const VitalsDelete = ({ vitalsId }: { vitalsId: string }) => {
   return (
     <div className='flex flex-col items-center justify-center gap-2 py-2'>
       <span>Delete Vitals:</span>
-      {vitalsId}
       <span className='text-sm italic'>Type {'"DELETE"'} to confirm. </span>
       <form
         onSubmit={handleSubmit(handleDeleteVitals)}

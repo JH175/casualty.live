@@ -3,7 +3,8 @@ import ClCaseNav from './ClCaseNav';
 import ClCaseDelete from './ClCaseDelete';
 import ClCaseEdit from './ClCaseEdit';
 import ClCaseShareButton from './ClCaseShareButton';
-import ClCaseEditButton from './CaseEditButton';
+import ClCaseEditButton from './ClCaseEditButton';
+import ClCaseDeleteButton from './ClCaseDeleteButton';
 
 export {
   ClCaseCreate,
@@ -12,4 +13,5 @@ export {
   ClCaseNav,
   ClCaseShareButton,
   ClCaseEditButton,
+  ClCaseDeleteButton,
 };

@@ -22,7 +22,6 @@ const VitalsDeleteButton = ({ vitalsId }: { vitalsId: string }) => {
           <ToggleButton onClick={toggleExpanded}>
             <FaX />
           </ToggleButton>
-          <span className='text-center'>Add Vitals:</span>
           <VitalsDelete vitalsId={vitalsId} />
         </SideBar>
       ) : null}
