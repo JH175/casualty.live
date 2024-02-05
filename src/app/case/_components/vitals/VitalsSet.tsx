@@ -9,7 +9,7 @@ const VitalsEntry = ({ vitalsSet }: { vitalsSet: any }) => {
       <span className='text-sm italic text-teal-300'>
         {dateTime.toLocaleString()}
       </span>
-      <div className='flex items-center justify-evenly rounded-md border border-zinc-700 p-2 text-sm'>
+      <div className='flex flex-col items-center justify-evenly gap-2 rounded-md border border-zinc-700 p-2 text-sm sm:flex-row'>
         <VitalsEditButton vitalsSet={vitalsSet} />
         <VitalsSection>
           <FaBrain className='text-teal-300' />
