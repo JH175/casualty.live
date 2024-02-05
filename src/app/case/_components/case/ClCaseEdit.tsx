@@ -3,10 +3,12 @@ import Button from '@/components/Button';
 import FormInput from '@/components/FormInput';
 import FormSelect from '@/components/FormSelect';
 import FormTextArea from '@/components/FormTextArea';
+import { useRouter } from 'next/navigation';
 import { FieldValues, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 
 const ClCaseEdit = ({ clCaseData }: { clCaseData: any }) => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -31,6 +33,7 @@ const ClCaseEdit = ({ clCaseData }: { clCaseData: any }) => {
       }
       if (response.ok) {
         toast.success('Case Updated Successfully!');
+        router.refresh();
       }
     } catch (error) {
       console.error(error);

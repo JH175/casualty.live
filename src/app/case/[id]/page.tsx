@@ -28,7 +28,7 @@ const ClCasePage = async ({ params }: { params: { id: string } }) => {
     <div className='flex flex-col items-center justify-center p-5'>
       <ClCaseNav clCaseData={clCaseData} />
       <div className='flex flex-col  gap-2'>
-        {vitalsSets.length > 1 ? (
+        {vitalsSets.length >= 1 ? (
           <>
             {vitalsSets?.map((vitalsSet) => (
               <VitalsEntry key={vitalsSet.id} vitalsSet={vitalsSet} />
