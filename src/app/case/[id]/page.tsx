@@ -1,7 +1,7 @@
 import prisma from '@/lib/db';
 import { redirect } from 'next/navigation';
 import { ClCaseNav } from '../_components/case';
-import { VitalsEntry } from '../_components/vitals';
+import { VitalsAddButton, VitalsEntry } from '../_components/vitals';
 
 const ClCasePage = async ({ params }: { params: { id: string } }) => {
   const clCaseId = params.id;
@@ -28,9 +28,18 @@ const ClCasePage = async ({ params }: { params: { id: string } }) => {
     <div className='flex flex-col items-center justify-center p-5'>
       <ClCaseNav clCaseData={clCaseData} />
       <div className='flex flex-col  gap-2'>
-        {vitalsSets?.map((vitalsSet) => (
-          <VitalsEntry key={vitalsSet.id} vitalsSet={vitalsSet} />
-        ))}
+        {vitalsSets.length > 1 ? (
+          <>
+            {vitalsSets?.map((vitalsSet) => (
+              <VitalsEntry key={vitalsSet.id} vitalsSet={vitalsSet} />
+            ))}
+          </>
+        ) : (
+          <div className='flex flex-col items-center justify-center gap-5'>
+            <p>Add vitals to get started...</p>
+            <VitalsAddButton clCaseData={clCaseData} />
+          </div>
+        )}
       </div>
     </div>
   );
