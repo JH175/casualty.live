@@ -49,7 +49,10 @@ export async function PUT(
   }
 }
 
-export async function DELETE({ params }: { params: { id: string } }) {
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   try {
     const clCaseId = params.id;
     const existingCase = await prisma.clCase.findUnique({

@@ -79,18 +79,12 @@ export async function PUT(
   }
 }
 
-export async function DELETE({ params }: { params: { id: string } }) {
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   try {
     const vitalsId = params.id as string;
-    const existingVitals = await prisma.vitals.findUnique({
-      where: { id: vitalsId },
-    });
-    if (!existingVitals) {
-      return new NextResponse(JSON.stringify({ error: 'Vitals not found' }), {
-        status: 404,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    }
     await prisma.vitals.delete({
       where: {
         id: vitalsId,
