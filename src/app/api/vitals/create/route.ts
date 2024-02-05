@@ -26,13 +26,14 @@ export async function POST(req: NextRequest) {
 
     if (!clCaseId) {
       return new NextResponse(
-        JSON.stringify({ error: 'Missing required fields' }),
+        JSON.stringify({ error: 'Missing required case id' }),
         {
           status: 400,
           headers: { 'Content-Type': 'application/json' },
         }
       );
     }
+
     const vitals = await prisma.vitals.create({
       data: {
         clCaseId,
@@ -63,7 +64,7 @@ export async function POST(req: NextRequest) {
   } catch (error: unknown) {
     console.error(error);
     return new NextResponse(
-      JSON.stringify({ error: 'Error creating new case' }),
+      JSON.stringify({ error: 'Error creating new vitals' }),
       {
         status: 500,
         headers: { 'Content-Type': 'application/json' },

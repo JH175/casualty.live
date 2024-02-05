@@ -3,38 +3,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/db';
 
-export async function GET({ params }: { params: { id: string } }) {
-  try {
-    const vitalsId = params.id;
-    const vitalsSet = await prisma.vitals.findUnique({
-      where: { id: vitalsId },
-    });
-    if (!vitalsSet) {
-      return new NextResponse(
-        JSON.stringify({ error: 'Vitals set not found' }),
-        {
-          status: 404,
-          headers: { 'Content-Type': 'application/json' },
-        }
-      );
-    }
-    return new NextResponse(JSON.stringify(vitalsSet), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' },
-    });
-  } catch (error: unknown) {
-    let status = 500;
-    let errorMessage = 'Error fetching vitals set';
-    if (error instanceof Error) {
-      errorMessage = error.message;
-    }
-    return new NextResponse(JSON.stringify({ error: errorMessage }), {
-      status,
-      headers: { 'Content-Type': 'application/json' },
-    });
-  }
-}
-
 export async function PUT(
   req: NextRequest,
   { params }: { params: { id: string } }
@@ -61,21 +29,18 @@ export async function PUT(
       pain,
     } = await req.json();
 
-    const existingVitalsSet = await prisma.vitals.findUnique({
+    const existingVitals = await prisma.vitals.findUnique({
       where: { id: vitalsId },
     });
 
-    if (!existingVitalsSet) {
-      return new NextResponse(
-        JSON.stringify({ error: 'Vitals set not found' }),
-        {
-          status: 404,
-          headers: { 'Content-Type': 'application/json' },
-        }
-      );
+    if (!existingVitals) {
+      return new NextResponse(JSON.stringify({ error: 'Vitals not found' }), {
+        status: 404,
+        headers: { 'Content-Type': 'application/json' },
+      });
     }
 
-    const updatedVitalsSet = await prisma.vitals.update({
+    const updatedVitals = await prisma.vitals.update({
       where: { id: vitalsId },
       data: {
         entryDateTime,
@@ -97,13 +62,13 @@ export async function PUT(
         pain,
       },
     });
-    return new NextResponse(JSON.stringify(updatedVitalsSet), {
+    return new NextResponse(JSON.stringify(updatedVitals), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
   } catch (error: unknown) {
     let status = 500;
-    let errorMessage = 'Error updating vitals set';
+    let errorMessage = 'Error updating vitals';
     if (error instanceof Error) {
       errorMessage = error.message;
     }
@@ -116,34 +81,29 @@ export async function PUT(
 
 export async function DELETE({ params }: { params: { id: string } }) {
   try {
-    const vitalsId = params.id;
-    const existingVitalsSet = await prisma.clCase.findUnique({
+    const vitalsId = params.id as string;
+    const existingVitals = await prisma.vitals.findUnique({
       where: { id: vitalsId },
     });
-    if (!existingVitalsSet) {
-      return new NextResponse(
-        JSON.stringify({ error: 'Vitals set not found' }),
-        {
-          status: 404,
-          headers: { 'Content-Type': 'application/json' },
-        }
-      );
-    }
-
-    await prisma.vitals.delete({
-      where: { id: vitalsId },
-    });
-
-    return new NextResponse(
-      JSON.stringify({ message: 'Vitals set deleted successfully' }),
-      {
-        status: 200,
+    if (!existingVitals) {
+      return new NextResponse(JSON.stringify({ error: 'Vitals not found' }), {
+        status: 404,
         headers: { 'Content-Type': 'application/json' },
-      }
-    );
+      });
+    }
+    await prisma.vitals.delete({
+      where: {
+        id: vitalsId,
+      },
+    });
+
+    return new NextResponse(JSON.stringify({}), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
   } catch (error: unknown) {
     let status = 500;
-    let errorMessage = 'Error deleting vitals set';
+    let errorMessage = 'Error updating vitals';
     if (error instanceof Error) {
       errorMessage = error.message;
     }

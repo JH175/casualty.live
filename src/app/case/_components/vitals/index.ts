@@ -5,6 +5,8 @@ import VitalsAddForm from './VitalsAddForm';
 import VitalsEditForm from './VitalsEditForm';
 import VitalsAddButton from './VitalsAddButton';
 import VitalsEditButton from './VitalsEditButton';
+import VitalsDelete from './VitalsDelete';
+import VitalsDeleteButton from './VitalsDeleteButton';
 
 export {
   VitalsAddForm,
@@ -14,4 +16,6 @@ export {
   VitalsEntry,
   VitalsAddButton,
   VitalsEditButton,
+  VitalsDelete,
+  VitalsDeleteButton,
 };

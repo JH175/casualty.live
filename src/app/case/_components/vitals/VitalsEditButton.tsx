@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { FaBars, FaGear, FaGears, FaHandDots, FaX } from 'react-icons/fa6';
+import { FaBars, FaX } from 'react-icons/fa6';
 import SideBar from '@/components/SideBar';
 import ToggleButton from '@/components/ToggleButton';
-import { VitalsEditForm } from '.';
+import { VitalsDeleteButton, VitalsEditForm } from '.';
 
 const VitalsEditButton = ({ vitalsSet }: { vitalsSet: any }) => {
   const [expanded, setExpanded] = useState(false);
@@ -18,9 +18,13 @@ const VitalsEditButton = ({ vitalsSet }: { vitalsSet: any }) => {
       </ToggleButton>
       {expanded ? (
         <SideBar>
-          <ToggleButton onClick={toggleExpanded}>
-            <FaX />
-          </ToggleButton>
+          <div className='flex justify-between'>
+            <ToggleButton onClick={toggleExpanded}>
+              <FaX />
+            </ToggleButton>
+            <VitalsDeleteButton vitalsId={vitalsSet.id} />
+          </div>
+
           <span className='text-center'>Edit Vitals:</span>
           <VitalsEditForm vitalsSet={vitalsSet} />
         </SideBar>
