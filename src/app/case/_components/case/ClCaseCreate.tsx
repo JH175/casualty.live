@@ -43,71 +43,69 @@ const ClCaseCreate = () => {
     }
   };
   return (
-    <div>
-      <div className='flex justify-center rounded-md border border-zinc-700 p-5 shadow-md shadow-teal-300'>
-        <form
-          onSubmit={handleSubmit(handleCreateClCase)}
-          className='flex flex-col gap-2'
-        >
-          <FormInput
-            name='ptAge'
-            type='number'
-            label='Age'
-            width='w-44'
-            validationSchema={{
-              valueAsNumber: true,
-              required: "Patient's age is required.",
-            }}
-            register={register}
-          />
-          <FormSelect
-            name='ptAgeUnit'
-            width='w-44'
-            options={[
-              { name: 'Years', value: 'Y/O' },
-              { name: 'Months', value: 'MO' },
-            ]}
-            defaultValue={'Y/O'}
-            register={register}
-          />
+    <div className='flex justify-center rounded-md border border-zinc-700 p-5 shadow-md shadow-teal-300'>
+      <form
+        onSubmit={handleSubmit(handleCreateClCase)}
+        className='flex flex-col gap-2'
+      >
+        <FormInput
+          name='ptAge'
+          type='number'
+          label='Age'
+          width='w-44'
+          validationSchema={{
+            valueAsNumber: true,
+            required: "Patient's age is required.",
+          }}
+          register={register}
+        />
+        <FormSelect
+          name='ptAgeUnit'
+          width='w-44'
+          options={[
+            { name: 'Years', value: 'Y/O' },
+            { name: 'Months', value: 'MO' },
+          ]}
+          defaultValue={'Y/O'}
+          register={register}
+        />
 
-          <FormSelect
-            name='ptGender'
-            label='Gender'
-            width='w-44'
-            options={[
-              { name: 'Male', value: 'Male' },
-              { name: 'Female', value: 'Female' },
-            ]}
-            validationSchema={{
-              required: "Patient's gender is required.",
-            }}
-            register={register}
-          />
-          <FormInput
-            name='complaint'
-            type='text'
-            label='Complaint'
-            width='w-44'
-            register={register}
-          />
+        <FormSelect
+          name='ptGender'
+          label='Gender'
+          width='w-44'
+          options={[
+            { name: 'Male', value: 'Male' },
+            { name: 'Female', value: 'Female' },
+          ]}
+          validationSchema={{
+            required: "Patient's gender is required.",
+          }}
+          register={register}
+        />
+        <FormInput
+          name='complaint'
+          type='text'
+          label='Complaint'
+          width='w-44'
+          register={register}
+        />
 
-          <FormTextArea
-            name='note'
-            label='Note'
-            width='w-44'
-            height='h-32'
-            register={register}
-          />
-          <Button
-            name='Create Case'
-            width='w-44'
-            height='h-8'
-            type='submit'
-            disabled={isSubmitting}
-          />
-        </form>
-      </div>
+        <FormTextArea
+          name='note'
+          label='Note'
+          width='w-44'
+          height='h-32'
+          register={register}
+        />
+        <Button
+          name='Create Case'
+          width='w-44'
+          height='h-8'
+          type='submit'
+          disabled={isSubmitting}
+        />
+      </form>
     </div>
   );
 };
