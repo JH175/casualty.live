@@ -13,9 +13,12 @@ const VitalsDelete = ({ vitalsId }: { vitalsId: string }) => {
 
   const handleDeleteVitals = async () => {
     try {
-      await fetch(`/api/vitals/${vitalsId}`, {
-        method: 'DELETE',
-      });
+      await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/vitals/${vitalsId}`,
+        {
+          method: 'DELETE',
+        }
+      );
       toast.success('Case Deleted!');
     } catch (error) {
       console.error(error);

@@ -49,11 +49,14 @@ const VitalsAddForm = ({ clCaseId }: { clCaseId: string }) => {
       map,
     };
     try {
-      const response = await fetch('/api/vitals/create', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(entryData),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/vitals/create`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(entryData),
+        }
+      );
       console.log(entryData);
       if (!response.ok) {
         throw new Error('Network response error');

@@ -15,7 +15,7 @@ const ClCaseDelete = ({ clCaseId }: { clCaseId: string }) => {
 
   const handleDeleteClCase = async () => {
     try {
-      await fetch(`/api/case/${clCaseId}`, {
+      await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/case/${clCaseId}`, {
         method: 'DELETE',
       });
       toast.success('Case Deleted!');

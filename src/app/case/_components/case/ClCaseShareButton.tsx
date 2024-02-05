@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 import { FaShare } from 'react-icons/fa6';
 
 const ClCaseShareButton = ({ clCaseId }: { clCaseId: any }) => {
-  const shareLink = `http://localhost:3000/case/${clCaseId}`;
+  const shareLink = `${process.env.NEXT_PUBLIC_BASE_URL}/case/${clCaseId}`;
   const copyShareLink = () => {
     try {
       navigator.clipboard.writeText(shareLink);
