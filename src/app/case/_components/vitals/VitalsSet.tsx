@@ -6,13 +6,13 @@ const VitalsEntry = ({ vitalsSet }: { vitalsSet: any }) => {
   const dateTime = new Date(vitalsSet.entryDateTime);
   return (
     <div>
-      <span className='text-sm italic text-teal-300'>
+      <span className='text-sm italic text-red-700'>
         {dateTime.toLocaleString()}
       </span>
-      <div className='flex flex-col items-center justify-evenly gap-2 rounded-md border border-zinc-700 p-2 text-sm sm:flex-row'>
+      <div className='flex flex-col items-center justify-evenly gap-2 rounded-md border border-zinc-500 p-2 text-sm sm:flex-row'>
         <VitalsEditButton vitalsSet={vitalsSet} />
         <VitalsSection>
-          <FaBrain className='text-teal-300' />
+          <FaBrain className='text-red-700' />
           GCS: {vitalsSet.gcsTotal ? vitalsSet.gcsTotal : ' -- '}
           {vitalsSet.gcsTotal ? (
             <div>
@@ -21,7 +21,7 @@ const VitalsEntry = ({ vitalsSet }: { vitalsSet: any }) => {
           ) : null}
         </VitalsSection>
         <VitalsSection>
-          <FaHeart className='text-teal-300' />
+          <FaHeart className='text-red-700' />
           <div>PR: {vitalsSet.pr ? `${vitalsSet.pr}/min` : ' -- '}</div>
           <div>
             BP:{' '}
@@ -37,7 +37,7 @@ const VitalsEntry = ({ vitalsSet }: { vitalsSet: any }) => {
           </div>
         </VitalsSection>
         <VitalsSection>
-          <FaLungs className='text-teal-300' />
+          <FaLungs className='text-red-700' />
           <div>RR: {vitalsSet.rr ? `${vitalsSet.rr}/min` : ' -- '}</div>
           <div>SPO2: {vitalsSet.spo2 ? `${vitalsSet.spo2}%` : ' -- '}</div>
           <div>
@@ -45,7 +45,7 @@ const VitalsEntry = ({ vitalsSet }: { vitalsSet: any }) => {
           </div>
         </VitalsSection>
         <VitalsSection>
-          <FaPerson className='text-teal-300' />
+          <FaPerson className='text-red-700' />
           <div>
             Temp: {vitalsSet.temp ? vitalsSet.temp : ' -- '}
             {vitalsSet.temp ? vitalsSet.tempUnit : null}

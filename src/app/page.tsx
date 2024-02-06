@@ -13,7 +13,7 @@ export default function Home() {
           </div>
           <h1 className='text-2xl'>
             Casualty
-            <span className='text-teal-300'>.</span>Live
+            <span className='text-red-700'>.</span>Live
           </h1>
           <p>Lightweight & Informed Telemedicine</p>
           <ul className='p-5'>
@@ -23,7 +23,7 @@ export default function Home() {
           </ul>
         </div>
         <Link href='#newCase'>
-          <span className='flex h-8 items-center justify-center rounded-md border border-zinc-700 bg-zinc-900 p-2 text-white hover:bg-teal-300 hover:text-black disabled:bg-zinc-900'>
+          <span className='flex h-8 items-center justify-center rounded-md border border-red-700 bg-red-700 p-2 text-white  hover:bg-red-600   disabled:bg-white'>
             Launch New Case
           </span>
         </Link>

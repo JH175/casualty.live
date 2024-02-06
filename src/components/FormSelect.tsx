@@ -18,7 +18,7 @@ const FormSelect = ({
   return (
     <div className='flex flex-col gap-1'>
       {label ? (
-        <label className='text-[.9rem] italic text-zinc-300' htmlFor={name}>
+        <label className='text-[.9rem] italic ' htmlFor={name}>
           {label}:{' '}
         </label>
       ) : null}
@@ -26,7 +26,7 @@ const FormSelect = ({
         {...register(name, validationSchema)}
         id={name}
         defaultValue={defaultValue}
-        className={`h-8 rounded-md border border-zinc-700 bg-zinc-900 text-center ${width}`}
+        className={`h-8 rounded-md border border-zinc-500 bg-white text-center ${width}`}
       >
         <option value=''>--</option>
         {options.map((option) => (

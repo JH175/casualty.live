@@ -11,7 +11,7 @@ const ClCaseNav = ({ clCaseData }: { clCaseData: any }) => {
       <div className='flex flex-col uppercase'>
         <span className='text-sm'>Case Id: {clCaseData.id}</span>
         <span className='text-sm'>{`Initiated: ${clCaseDateIso}`}</span>
-        <div className='text-sm text-teal-300'>
+        <div className='text-sm text-red-700'>
           <div>
             Patient: {clCaseData.ptAge} {clCaseData.ptAgeUnit},{' '}
             {clCaseData.ptGender}

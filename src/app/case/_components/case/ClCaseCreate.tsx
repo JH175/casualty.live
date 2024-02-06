@@ -43,7 +43,7 @@ const ClCaseCreate = () => {
     }
   };
   return (
-    <div className='flex justify-center rounded-md border border-zinc-700 p-5 shadow-md shadow-teal-300'>
+    <div className='flex justify-center rounded-md border border-zinc-500 bg-white p-5 shadow-md shadow-red-700'>
       <form
         onSubmit={handleSubmit(handleCreateClCase)}
         className='flex flex-col gap-2'
