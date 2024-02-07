@@ -20,7 +20,7 @@ const FormTextArea = ({
   return (
     <div className='flex flex-col gap-1'>
       {label ? (
-        <label className='text-[.9rem] italic ' htmlFor={name}>
+        <label className='text-[.9rem] italic text-blue-800' htmlFor={name}>
           {label}:{' '}
         </label>
       ) : null}

@@ -49,6 +49,8 @@ const ClCaseEdit = ({ clCaseData }: { clCaseData: any }) => {
           name='ptAge'
           type='number'
           label='Age'
+          min={1}
+          max={120}
           width='w-44'
           defaultValue={clCaseData.ptAge}
           validationSchema={{

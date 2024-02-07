@@ -146,6 +146,7 @@ const VitalsAddForm = ({ clCaseId }: { clCaseId: string }) => {
         name='pr'
         type='number'
         label='PR'
+        min={0}
         width='w-52'
         placeholder='/min'
         validationSchema={{
@@ -157,6 +158,7 @@ const VitalsAddForm = ({ clCaseId }: { clCaseId: string }) => {
         name='sbp'
         label='BP'
         type='number'
+        min={0}
         width='w-52'
         placeholder='SBP'
         validationSchema={{
@@ -171,6 +173,7 @@ const VitalsAddForm = ({ clCaseId }: { clCaseId: string }) => {
         name='dbp'
         width='w-52'
         type='number'
+        min={0}
         placeholder='DBP'
         validationSchema={{
           valueAsNumber: true,
@@ -183,6 +186,8 @@ const VitalsAddForm = ({ clCaseId }: { clCaseId: string }) => {
       <FormInput
         name='rr'
         label='RR'
+        min={0}
+        max={100}
         width='w-52'
         type='number'
         placeholder='/min'
@@ -192,6 +197,8 @@ const VitalsAddForm = ({ clCaseId }: { clCaseId: string }) => {
       <FormInput
         name='spo2'
         label='SPO2'
+        min={0}
+        max={100}
         width='w-52'
         type='number'
         placeholder='%'
@@ -201,6 +208,7 @@ const VitalsAddForm = ({ clCaseId }: { clCaseId: string }) => {
       <FormInput
         name='etco2'
         label='ETCO2'
+        min={0}
         width='w-52'
         type='number'
         placeholder='mmHg'
@@ -230,6 +238,7 @@ const VitalsAddForm = ({ clCaseId }: { clCaseId: string }) => {
         name='bgl'
         label='BGL'
         width='w-52'
+        min={0}
         type='number'
         validationSchema={{ valueAsNumber: true }}
         register={register}

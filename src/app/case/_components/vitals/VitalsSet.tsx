@@ -6,10 +6,10 @@ const VitalsEntry = ({ vitalsSet }: { vitalsSet: any }) => {
   const dateTime = new Date(vitalsSet.entryDateTime);
   return (
     <div>
-      <span className='text-sm italic text-red-700'>
+      <span className='text-sm italic text-blue-800'>
         {dateTime.toLocaleString()}
       </span>
-      <div className='flex flex-col items-center justify-evenly gap-2 rounded-md border border-zinc-500 p-2 text-sm sm:flex-row'>
+      <div className='flex flex-col items-center justify-evenly gap-2 rounded-md border border-zinc-500 bg-white p-2 text-sm sm:flex-row'>
         <VitalsEditButton vitalsSet={vitalsSet} />
         <VitalsSection>
           <FaBrain className='text-red-700' />

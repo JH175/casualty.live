@@ -146,6 +146,7 @@ const VitalsEditForm = ({ vitalsSet }: { vitalsSet: any }) => {
         name='pr'
         type='number'
         label='PR'
+        min={0}
         width='w-52'
         defaultValue={vitalsSet.pr}
         placeholder='/min'
@@ -157,6 +158,7 @@ const VitalsEditForm = ({ vitalsSet }: { vitalsSet: any }) => {
       <FormInput
         name='sbp'
         label='BP'
+        min={0}
         type='number'
         width='w-52'
         placeholder='SBP'
@@ -172,6 +174,7 @@ const VitalsEditForm = ({ vitalsSet }: { vitalsSet: any }) => {
       <FormInput
         name='dbp'
         width='w-52'
+        min={0}
         type='number'
         placeholder='DBP'
         defaultValue={vitalsSet.dbp}
@@ -186,6 +189,8 @@ const VitalsEditForm = ({ vitalsSet }: { vitalsSet: any }) => {
       <FormInput
         name='rr'
         label='RR'
+        min={0}
+        max={100}
         width='w-52'
         type='number'
         placeholder='/min'
@@ -196,6 +201,8 @@ const VitalsEditForm = ({ vitalsSet }: { vitalsSet: any }) => {
       <FormInput
         name='spo2'
         label='SPO2'
+        min={0}
+        max={100}
         width='w-52'
         type='number'
         placeholder='%'
@@ -206,6 +213,7 @@ const VitalsEditForm = ({ vitalsSet }: { vitalsSet: any }) => {
       <FormInput
         name='etco2'
         label='ETCO2'
+        min={0}
         width='w-52'
         type='number'
         placeholder='mmHg'
@@ -236,6 +244,7 @@ const VitalsEditForm = ({ vitalsSet }: { vitalsSet: any }) => {
       <FormInput
         name='bgl'
         label='BGL'
+        min={0}
         width='w-52'
         type='number'
         defaultValue={vitalsSet.bgl}

@@ -43,7 +43,7 @@ const ClCaseCreate = () => {
     }
   };
   return (
-    <div className='flex justify-center rounded-md border border-zinc-500 bg-white p-5 shadow-md shadow-red-700'>
+    <div className='flex justify-center rounded-md bg-white p-5 drop-shadow-md'>
       <form
         onSubmit={handleSubmit(handleCreateClCase)}
         className='flex flex-col gap-2'
@@ -52,6 +52,8 @@ const ClCaseCreate = () => {
           name='ptAge'
           type='number'
           label='Age'
+          min={1}
+          max={120}
           width='w-44'
           validationSchema={{
             valueAsNumber: true,
