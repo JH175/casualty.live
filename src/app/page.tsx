@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div>
+    <div className='p-5'>
       <div className='flex h-screen flex-col items-center justify-center'>
         <div className='flex flex-col items-center justify-center'>
           <div className='p-5'>

@@ -59,6 +59,9 @@ const ClCaseEdit = ({ clCaseData }: { clCaseData: any }) => {
           }}
           register={register}
         />
+        {errors.ptAge ? (
+          <p className='text-red-500'>{`${errors.ptAge.message}`}</p>
+        ) : null}
         <FormSelect
           name='ptAgeUnit'
           width='w-44'
@@ -84,6 +87,9 @@ const ClCaseEdit = ({ clCaseData }: { clCaseData: any }) => {
           }}
           register={register}
         />
+        {errors.ptGender ? (
+          <p className='text-red-500'>{`${errors.ptGender.message}`}</p>
+        ) : null}
         <FormInput
           name='complaint'
           type='text'

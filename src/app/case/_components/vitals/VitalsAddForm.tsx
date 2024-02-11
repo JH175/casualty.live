@@ -18,7 +18,7 @@ const VitalsAddForm = ({ clCaseId }: { clCaseId: string }) => {
     handleSubmit,
     reset,
     watch,
-    formState: { isSubmitting },
+    formState: { isSubmitting, errors },
   } = useForm<Vitals>();
 
   const [gcsTotal, setGcsTotal] = useState<number | null>(null);
@@ -83,8 +83,12 @@ const VitalsAddForm = ({ clCaseId }: { clCaseId: string }) => {
         type='datetime-local'
         width='w-52'
         register={register}
+        validationSchema={{ required: 'Date and time are required.' }}
       />
-      <span>GCS: {gcsTotal ? gcsTotal : '--'}</span>{' '}
+      {errors.entryDateTime ? (
+        <p className='text-red-500'>{`${errors.entryDateTime.message}`}</p>
+      ) : null}
+      <span>GCS: {gcsTotal ? gcsTotal : '--'}</span>
       <FormSelect
         name='gcsE'
         label='Eye Response'

@@ -46,7 +46,7 @@ const ClCaseCreate = () => {
     <div className='flex justify-center rounded-md bg-white p-5 drop-shadow-md'>
       <form
         onSubmit={handleSubmit(handleCreateClCase)}
-        className='flex flex-col gap-2'
+        className='flex flex-col gap-2 '
       >
         <FormInput
           name='ptAge'
@@ -61,6 +61,9 @@ const ClCaseCreate = () => {
           }}
           register={register}
         />
+        {errors.ptAge ? (
+          <p className='text-red-500'>{`${errors.ptAge.message}`}</p>
+        ) : null}
         <FormSelect
           name='ptAgeUnit'
           width='w-44'
@@ -85,6 +88,9 @@ const ClCaseCreate = () => {
           }}
           register={register}
         />
+        {errors.ptGender ? (
+          <p className='text-red-500'>{`${errors.ptGender.message}`}</p>
+        ) : null}
         <FormInput
           name='complaint'
           type='text'

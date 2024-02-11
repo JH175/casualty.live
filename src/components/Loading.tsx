@@ -4,7 +4,7 @@ const Loading = () => {
       <p className='text-lg'>Loading...</p>
       <div className='animate-spin p-5'>
         <svg
-          fill='white'
+          fill='black'
           width='30'
           height='30'
           viewBox='0 0 24 24'

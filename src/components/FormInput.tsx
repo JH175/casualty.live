@@ -39,7 +39,7 @@ const FormInput = ({
         max={max}
         defaultValue={defaultValue}
         placeholder={placeholder}
-        className={`h-8 rounded-md border border-zinc-500 bg-white text-center ${width}`}
+        className={`h-8 rounded-md border  border-zinc-500 bg-white text-center ${width}`}
       />
     </div>
   );

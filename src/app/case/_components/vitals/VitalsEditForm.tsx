@@ -15,9 +15,8 @@ const VitalsEditForm = ({ vitalsSet }: { vitalsSet: any }) => {
   const {
     register,
     handleSubmit,
-    reset,
     watch,
-    formState: { isSubmitting },
+    formState: { isSubmitting, errors },
   } = useForm<Vitals>();
 
   const [gcsTotal, setGcsTotal] = useState<number | null>(vitalsSet.gcsTotal);
@@ -80,7 +79,11 @@ const VitalsEditForm = ({ vitalsSet }: { vitalsSet: any }) => {
         width='w-52'
         defaultValue={vitalsSet.entryDateTime}
         register={register}
+        validationSchema={{ required: 'Date and time are required.' }}
       />
+      {errors.entryDateTime ? (
+        <p className='text-red-500'>{`${errors.entryDateTime.message}`}</p>
+      ) : null}
       <span>GCS: {gcsTotal ? gcsTotal : '--'}</span>{' '}
       <FormSelect
         name='gcsE'
