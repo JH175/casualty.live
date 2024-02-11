@@ -19,7 +19,7 @@ const VitalsDelete = ({ vitalsId }: { vitalsId: string }) => {
           method: 'DELETE',
         }
       );
-      toast.success('Case Deleted!');
+      toast.success('Vitals Deleted!');
     } catch (error) {
       console.error(error);
     }
