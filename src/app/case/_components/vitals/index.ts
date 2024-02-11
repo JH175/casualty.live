@@ -1,4 +1,3 @@
-import VitalsChart from './VitalsChart';
 import VitalsEntry from './VitalsSet';
 import VitalsSection from './VitalsSection';
 import VitalsAddForm from './VitalsAddForm';
@@ -11,7 +10,6 @@ import VitalsDeleteButton from './VitalsDeleteButton';
 export {
   VitalsAddForm,
   VitalsEditForm,
-  VitalsChart,
   VitalsSection,
   VitalsEntry,
   VitalsAddButton,
