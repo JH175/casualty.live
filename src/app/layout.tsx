@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { Maven_Pro } from 'next/font/google';
 import './globals.css';
-import { Header } from '@/components/Header';
 import { Toaster } from 'react-hot-toast';
+import Providers from '@/lib/query-provider';
 
 const maven = Maven_Pro({ subsets: ['latin'] });
 
@@ -19,8 +19,10 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={maven.className}>
-        {children}
-        <Toaster />
+        <Providers>
+          {children}
+          <Toaster />
+        </Providers>
       </body>
     </html>
   );

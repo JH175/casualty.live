@@ -1,12 +1,10 @@
 'use client';
 import Button from '@/components/Button';
 import FormInput from '@/components/FormInput';
-import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 
 const VitalsDelete = ({ vitalsId }: { vitalsId: string }) => {
-  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -22,7 +20,6 @@ const VitalsDelete = ({ vitalsId }: { vitalsId: string }) => {
         }
       );
       toast.success('Case Deleted!');
-      router.refresh();
     } catch (error) {
       console.error(error);
     }

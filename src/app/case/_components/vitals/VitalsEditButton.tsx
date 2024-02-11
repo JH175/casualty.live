@@ -26,7 +26,10 @@ const VitalsEditButton = ({ vitalsSet }: { vitalsSet: any }) => {
           </div>
 
           <span className='text-center'>Edit Vitals:</span>
-          <VitalsEditForm vitalsSet={vitalsSet} />
+          <VitalsEditForm
+            vitalsSet={vitalsSet}
+            toggleExpanded={toggleExpanded}
+          />
         </SideBar>
       ) : null}
     </div>

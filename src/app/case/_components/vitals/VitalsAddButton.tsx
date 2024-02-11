@@ -23,7 +23,10 @@ const VitalsAddButton = ({ clCaseData }: { clCaseData: any }) => {
             <FaX />
           </ToggleButton>
           <span className='text-center'>Add Vitals:</span>
-          <VitalsAddForm clCaseId={clCaseData.id} />
+          <VitalsAddForm
+            clCaseId={clCaseData.id}
+            toggleExpanded={toggleExpanded}
+          />
         </SideBar>
       ) : null}
     </div>

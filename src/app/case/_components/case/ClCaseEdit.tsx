@@ -7,7 +7,13 @@ import { useRouter } from 'next/navigation';
 import { FieldValues, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 
-const ClCaseEdit = ({ clCaseData }: { clCaseData: any }) => {
+const ClCaseEdit = ({
+  clCaseData,
+  toggleExpanded,
+}: {
+  clCaseData: any;
+  toggleExpanded: any;
+}) => {
   const router = useRouter();
   const {
     register,
@@ -33,6 +39,7 @@ const ClCaseEdit = ({ clCaseData }: { clCaseData: any }) => {
       }
       if (response.ok) {
         toast.success('Case Updated Successfully!');
+        toggleExpanded();
         router.refresh();
       }
     } catch (error) {

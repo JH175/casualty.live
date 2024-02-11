@@ -3,6 +3,33 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/db';
 
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const clCaseId = params.id;
+    const vitals = await prisma.vitals.findMany({
+      where: { clCaseId },
+      orderBy: { entryDateTime: 'desc' },
+    });
+    return new NextResponse(JSON.stringify(vitals), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  } catch (error: unknown) {
+    let status = 500;
+    let errorMessage = 'Error fetching vitals';
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+    return new NextResponse(JSON.stringify({ error: errorMessage }), {
+      status,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+}
+
 export async function PUT(
   req: NextRequest,
   { params }: { params: { id: string } }

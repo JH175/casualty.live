@@ -3,16 +3,19 @@
 import { FieldValues, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Vitals } from '@prisma/client';
-
 import { useState } from 'react';
 import { calculateGcs, calculateMap } from '@/lib/math';
 import FormInput from '@/components/FormInput';
 import FormSelect from '@/components/FormSelect';
 import Button from '@/components/Button';
-import { useRouter } from 'next/navigation';
 
-const VitalsAddForm = ({ clCaseId }: { clCaseId: string }) => {
-  const router = useRouter();
+const VitalsAddForm = ({
+  clCaseId,
+  toggleExpanded,
+}: {
+  clCaseId: string;
+  toggleExpanded: any;
+}) => {
   const {
     register,
     handleSubmit,
@@ -65,9 +68,9 @@ const VitalsAddForm = ({ clCaseId }: { clCaseId: string }) => {
       }
       if (response.ok) {
         toast.success('Vitals added!');
-        router.refresh();
       }
       reset();
+      toggleExpanded();
     } catch (error) {
       console.error(error);
     }

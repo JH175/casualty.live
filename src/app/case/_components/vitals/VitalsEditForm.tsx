@@ -8,10 +8,14 @@ import { calculateGcs, calculateMap } from '@/lib/math';
 import FormInput from '@/components/FormInput';
 import FormSelect from '@/components/FormSelect';
 import Button from '@/components/Button';
-import { useRouter } from 'next/navigation';
 
-const VitalsEditForm = ({ vitalsSet }: { vitalsSet: any }) => {
-  const router = useRouter();
+const VitalsEditForm = ({
+  vitalsSet,
+  toggleExpanded,
+}: {
+  vitalsSet: any;
+  toggleExpanded: any;
+}) => {
   const {
     register,
     handleSubmit,
@@ -61,7 +65,7 @@ const VitalsEditForm = ({ vitalsSet }: { vitalsSet: any }) => {
       }
       if (response.ok) {
         toast.success('Vitals Updated Successfully!');
-        router.refresh();
+        toggleExpanded();
       }
     } catch (error) {
       console.error(error);

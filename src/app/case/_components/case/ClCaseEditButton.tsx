@@ -25,7 +25,7 @@ const ClCaseEditButton = ({ clCaseData }: { clCaseData: any }) => {
             <ClCaseDeleteButton clCaseId={clCaseData.id} />
           </div>
           <span className='text-center'>Case Settings:</span>
-          <ClCaseEdit clCaseData={clCaseData} />
+          <ClCaseEdit clCaseData={clCaseData} toggleExpanded={toggleExpanded} />
         </SideBar>
       ) : null}
     </div>
